@@ -1,9 +1,8 @@
-{{ config(materialized="table", sort="country_id", dist="country_id") }}
+{{ config(materialized="view", sort="country_id", dist="country_id") }}
 
 with
     source as (
         select
-
             country_id,
             country,
             iso_currency,
@@ -15,7 +14,6 @@ with
     ),
     renamed as (
         select
-
             country_id as country_id,
             country as country,
             iso_currency as iso_currency,

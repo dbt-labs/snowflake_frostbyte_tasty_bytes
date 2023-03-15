@@ -1,4 +1,4 @@
-{{ config(materialized="table", sort="shift_id", dist="shift_id") }}
+{{ config(materialized="view", sort="shift_id", dist="shift_id") }}
 
 with
     source as (

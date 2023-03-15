@@ -1,4 +1,4 @@
-{{ config(materialized="table", sort="warehouse_id", dist="warehouse_id") }}
+{{ config(materialized="view", sort="warehouse_id", dist="warehouse_id") }}
 
 with
     source as (

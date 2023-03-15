@@ -1,9 +1,8 @@
-{{ config(materialized="table", sort="order_id", dist="order_id") }}
+{{ config(materialized="view", sort="order_id", dist="order_id") }}
 
 with
     source as (
         select
-
             order_id,
             truck_id,
             location_id,
@@ -24,8 +23,6 @@ with
     ),
     renamed as (
         select
-
-
             order_id as order_id,
             truck_id as truck_id,
             location_id as location_id,

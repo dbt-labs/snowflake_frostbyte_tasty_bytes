@@ -1,10 +1,8 @@
-{{ config(materialized="table", sort="truck_id", dist="truck_id") }}
+{{ config(materialized="view", sort="truck_id", dist="truck_id") }}
 
 with
     source as (
         select
-
-
             truck_id,
             menu_type_id,
             primary_city,
@@ -23,9 +21,6 @@ with
     ),
     renamed as (
         select
-
-
-
             truck_id as truck_id,
             menu_type_id as menu_type_id,
             primary_city as primary_city,
