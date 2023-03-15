@@ -22,7 +22,7 @@ with
             shift_forecast as shift_forecast,
             menu_type_id as menu_type_id,
             created_date as created_date,
-            updated_date as updated_date,
+            updated_date as updated_date
         from source
     )
 select *

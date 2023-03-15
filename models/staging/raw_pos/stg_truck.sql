@@ -11,12 +11,12 @@ with
             country,
             iso_country_code,
             franchise_flag,
-            [year],
+            year,
             make,
             model,
             ev_flag,
             franchise_id,
-            truck_opening_date,
+            truck_opening_date
         from {{ source("raw_pos", "truck") }}
     ),
     renamed as (
@@ -29,7 +29,7 @@ with
             country as country,
             iso_country_code as iso_country_code,
             franchise_flag as franchise_flag,
-            [year] as [year],
+            year as year,
             make as make,
             model as model,
             ev_flag as ev_flag,
