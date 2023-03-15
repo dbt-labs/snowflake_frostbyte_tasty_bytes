@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: raw_supply_chain
+    database: frostbyte_tasty_bytes  
+    schema: raw_supply_chain
+    tables:
+      - name: distribution_detail
+      - name: distribution_header
+      - name: item
+      - name: purchase_order_detail
+      - name: purchase_order_header
+      - name: recipe
+      - name: vendor
+      - name: warehouse
