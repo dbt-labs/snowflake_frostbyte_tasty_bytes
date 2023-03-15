@@ -3,8 +3,6 @@
 with
     source as (
         select
-
-
             item_id,
             name,
             category,
@@ -18,8 +16,6 @@ with
     ),
     renamed as (
         select
-
-
             item_id as item_id,
             name as name,
             category as category,

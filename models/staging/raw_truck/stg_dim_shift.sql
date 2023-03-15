@@ -7,8 +7,6 @@ with
     ),
     renamed as (
         select
-
-
             shift_id as shift_id,
             shift_type as shift_type,
             shift_start_time as shift_start_time,

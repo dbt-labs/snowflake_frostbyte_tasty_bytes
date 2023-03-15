@@ -3,9 +3,6 @@
 with
     source as (
         select
-
-
-
             truck_id,
             forecast_date,
             shift_id,
@@ -18,11 +15,6 @@ with
     ),
     renamed as (
         select
-
-
-
-
-
             truck_id as truck_id,
             forecast_date as forecast_date,
             shift_id as shift_id,

@@ -7,8 +7,6 @@ with
     ),
     renamed as (
         select
-
-
             location_id as location_id,
             placekey as placekey,
             location as location,

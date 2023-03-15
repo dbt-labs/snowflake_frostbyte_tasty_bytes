@@ -3,7 +3,6 @@
 with
     source as (
         select
-
             po_id,
             vendor_id,
             shipment_id,
@@ -21,9 +20,6 @@ with
     ),
     renamed as (
         select
-
-
-
             po_id as po_id,
             vendor_id as vendor_id,
             shipment_id as shipment_id,

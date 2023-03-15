@@ -7,10 +7,6 @@ with
     ),
     renamed as (
         select
-
-
-
-
             recipe_id as recipe_id,
             menu_item_id as menu_item_id,
             menu_item_line_item as menu_item_line_item,

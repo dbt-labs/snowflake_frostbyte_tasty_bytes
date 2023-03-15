@@ -3,8 +3,6 @@
 with
     source as (
         select
-
-
             dh_detail_id,
             dh_id,
             line_item_id,
@@ -18,9 +16,6 @@ with
     ),
     renamed as (
         select
-
-
-
             dh_detail_id as dh_detail_id,
             dh_id as dh_id,
             line_item_id as line_item_id,

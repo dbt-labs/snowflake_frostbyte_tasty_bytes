@@ -3,8 +3,6 @@
 with
     source as (
         select
-
-
             truck_id,
             item_id,
             warehouse_id,
@@ -17,10 +15,6 @@ with
     ),
     renamed as (
         select
-
-
-
-
             truck_id as truck_id,
             item_id as item_id,
             warehouse_id as warehouse_id,

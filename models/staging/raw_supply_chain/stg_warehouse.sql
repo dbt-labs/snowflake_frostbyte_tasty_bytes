@@ -7,8 +7,6 @@ with
     ),
     renamed as (
         select
-
-
             warehouse_id as warehouse_id,
             name as name,
             city as city,
