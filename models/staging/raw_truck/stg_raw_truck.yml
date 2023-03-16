@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: stg_dim_shift
+    description: staging for dim_shift table
+    columns:
+      - name: shift_id
+        description: pirmary key for the dim_shift model
+        tests:
+          - unique
+          - not_null
+      - name: shift_type
+        description: type of the shift AM or PM
+      - name: shift_start_time
+        description: starting time of the shift in 24 hrs format
+      - name: shift_end_time
+        description: ending time of the shift in 24 hrs format
+      - name: pm_shift_id
+        description: shift id for the PM shifts
+  - name: stg_inventory_queue
+    description: staging for inventory_queue table
+    tests:
+          - unique:
+             column_name: "(truck_id || '-' || item_id || '-' || warehouse_id)"
+    columns:
+      - name: truck_id
+        description: part of the composite key for the inventory_queue model
+        tests:
+          - not_null
+      - name: item_id
+        description: part of the composite key for the inventory_queue model
+        tests:
+          - not_null
+      - name: warehouse_id
+        description: part of the composite key for the inventory_queue model
+        tests:
+          - not_null
+      - name: quantity
+        description: quantity of the item
+      - name: schedule_week
+        description: scheduled week in the format yyyy-ww
+      - name: created_date
+        description: created date in the format yyyy-mm-dd
+      - name: updated_date
+        description: updated date in the format yyyy-mm-dd
+      - name: is_processed
+        description: status of the inventory queue item as TRUE OR FALSE
+  - name: stg_truck_shift
+    description: staging for truck_shift table
+    tests:
+          - unique:
+             column_name: "(truck_id || '-' || shift_id || '-' || location_id)"
+    columns:
+      - name: truck_id
+        description: foreign key for the truck model
+        tests:
+          - not_null
+      - name: forecast_date
+        description: forecast date in yyyy-mm-dd format
+      - name: shift_id
+        description: foreign key for the shift model
+        tests:
+          - not_null
+      - name: location_id
+        description: foreign key for the location model
+        tests:
+          - not_null
+      - name: shift_forecast
+        description: forecast for the shift
+      - name: menu_type_id
+        description: menu type id
+      - name: created_date
+        description: created date in  yyyy-mm-dd format
+      - name: updated_date
+        description: update date in yyyy-mm-dd format
+

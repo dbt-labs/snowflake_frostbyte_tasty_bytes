@@ -1,0 +1,191 @@
+version: 2
+
+models:
+  - name: stg_country
+    description: staging layer for country table
+    tests:
+          - unique:
+             column_name: "(country_id || '-' || city_id )"
+    columns:
+      - name: country_id
+        description: part of the composite key id for the country
+        tests:
+          - not_null
+      - name: country
+        description: name of the country
+      - name: iso_currency
+        description: currency code for the country
+      - name: iso_country
+        description: country code
+      - name: city_id
+        description: part of the composite key id for the country model
+        tests:
+          - not_null
+      - name: city
+        description: name of the city
+      - name: city_population
+        description: total population of the city
+  - name: stg_franchise
+    description: staging layer for franchise table
+    columns:
+      - name: franchise_id
+        description: primary key for franchise model
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: first name of the owner
+      - name: last_name
+        description: last name of the owner
+      - name: city
+        description: name of the city
+      - name: country
+        description: name of the country
+      - name: e_mail
+        description: email id of the owner
+      - name: phone_number
+        description: phone number of the owner
+  - name: stg_location
+    description: staging  for location table
+    columns:
+      - name: location_id
+        description: primary key for the model
+        tests:
+          - unique
+          - not_null
+      - name: placekey
+        description: unique alpha numeric key for the location
+      - name: location
+        description: name of the location
+      - name: city
+        description: name of the city
+      - name: region
+        description: region code
+      - name: iso_country_code
+        description: country code
+      - name: country
+        description: name of the country
+  - name: stg_menu
+    description: staging  for menu table
+    columns:
+      - name: menu_id
+        description: primary key for the menu model
+        tests:
+          - unique
+          - not_null
+      - name: menu_type_id
+        description: id for the menu type categories
+      - name: menu_type
+        description: categories of the menu
+      - name: truck_brand_name
+        description: name of the brand
+      - name: menu_item_id
+        description: id for the menu item
+      - name: menu_item_name
+        description: name of the menu item
+      - name: item_category
+        description: catergory of the item
+      - name: item_subcategory
+        description: subcategory of the item
+      - name: cost_of_goods_usd
+        description: cost of goods
+      - name: sale_price_usd
+        description: selling price of the goods
+      - name: menu_item_health_metrics_obj
+        description: obj containing menu item ingredients
+  - name: stg_order_detail
+    description: staging  for order_detail table
+    columns:
+      - name: order_detail_id
+        description: primary key for the order_detail model
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: foreign key for the order header model 
+      - name: menu_item_id
+        description: foreign key for the menu model
+      - name: discount_id
+        description: discount id
+      - name: line_number
+        description: line number
+      - name: quantity
+        description: quantity of the item sold
+      - name: unit_price
+        description: price of each item
+      - name: price
+        description: total price of the order detail line
+      - name: order_item_discount_amount
+        description: discount amount for the order
+  - name: stg_order_header
+    description: staging  for order_header table
+    columns:
+      - name: order_id
+        description: primary key for the order_header model
+        tests:
+          - unique
+          - not_null
+      - name: truck_id
+        description: foreign key for the truck model
+      - name: location_id
+        description: foreign key for the location model
+      - name: customer_id
+        description: customer id
+      - name: discount_id
+        description: discount id
+      - name: shift_id
+        description: foreign key for the shift model
+      - name: shift_start_time
+        description: start time of the shift in 24 hrs format
+      - name: shift_end_time
+        description: end time of the shift in 24 hrs format
+      - name: order_channel
+        description: channel for the order
+      - name: order_ts
+        description: order time stamp
+      - name: served_ts
+        description: service time stamp
+      - name: order_currency
+        description: currency code for the order
+      - name: order_amount
+        description: order amount before taxes and discount
+      - name: order_tax_amount
+        description: order tax amount
+      - name: order_discount_amount
+        description: order discount amount
+      - name: order_total
+        description: order total after taxes and discount
+  - name: stg_truck
+    description: staging  for truck table
+    columns:
+      - name: truck_id
+        description: primary key for the truck model
+        tests:
+          - unique
+          - not_null
+      - name: menu_type_id
+        description: key for the menu type 
+      - name: primary_city
+        description: name of the city
+      - name: region
+        description: name of the region/state
+      - name: iso_region
+        description: code for the region/state
+      - name: country
+        description: name of the country
+      - name: iso_country_code
+        description: iso code for the country
+      - name: franchise_flag
+        description: boolean flag for the franchise
+      - name: year
+        description: make year of the truck
+      - name: make
+        description: make of the truck
+      - name: model
+        description: model of the truck
+      - name: ev_flag
+        description: boolean flag for electric vehicle
+      - name: franchise_id
+        description: foreign key for the franchise model
+      - name: truck_opening_date
+        description: opening date for the truck in yyyy-mm-dd format
