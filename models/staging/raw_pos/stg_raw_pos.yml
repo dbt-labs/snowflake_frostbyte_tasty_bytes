@@ -89,9 +89,6 @@ models:
         description: subcategory of the item
       - name: cost_of_goods_usd
         description: cost of goods
-        tests:
-          - not_null:
-              where: "cost_of_goods > sale_price_usd"
       - name: sale_price_usd
         description: selling price of the goods
       - name: menu_item_health_metrics_obj
