@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_customer_loyalty
+    description: staging for customer_loyalty table
+    columns:
+      - name: customer_id
+        description: primary key for the customer model
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: first name of the customer
+      - name: last_name
+        description: last name of the customer
+      - name: city
+        description: customer city
+      - name: country
+        description: customer country
+      - name: postal_code
+        description: customer postal code
+      - name: preferred_language
+        description: customer's preferred_language
+      - name: gender
+        description: customer's gender
+      - name: favourite_brand
+        description: customer's favourite_brand
+      - name: marital_status
+        description: customer's marital status
+      - name: children_count
+        description: customer's children count
+      - name: sign_up_date
+        description: customer's sign up date
+      - name: birthday_date
+        description: customer's birthday date
+      - name: e_mail
+        description: customer's email
+      - name: phone_number
+        description: customer's phone number

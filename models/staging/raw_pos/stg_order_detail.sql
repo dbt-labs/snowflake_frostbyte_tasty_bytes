@@ -3,7 +3,6 @@
 with
     source as (
         select
-
             order_detail_id,
             order_id,
             menu_item_id,
@@ -17,7 +16,6 @@ with
     ),
     renamed as (
         select
-
             order_detail_id as order_detail_id,
             order_id as order_id,
             menu_item_id as menu_item_id,

@@ -42,3 +42,8 @@ models:
         +schema: stg_truck
       raw_supply_chain:
         +schema: stg_supply_chain
+      raw_customer:
+        +schema: stg_raw_customer
+    harmonized:
+      materialized: view
+      +schema: harmonized

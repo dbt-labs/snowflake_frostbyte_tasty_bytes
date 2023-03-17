@@ -177,3 +177,25 @@ models:
         description: lattitude of the warehouse
       - name: longitude
         description: longitude of the warehouse
+  - name: stg_calender
+    description: staging for dim_date table
+    columns:
+      - name: date
+        description: primary key of the calender model
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: year
+      - name: month
+        description: month
+      - name: month_name
+        description: month_name
+      - name: day_of_mon
+        description: day of the month
+      - name: day_of_week
+        description: day of the week
+      - name: week_of_year
+        description: week of the year
+      - name: day_of_year
+        description: day of the year

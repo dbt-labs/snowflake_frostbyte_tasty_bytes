@@ -13,3 +13,4 @@ sources:
       - name: recipe
       - name: vendor
       - name: warehouse
+      - name: dim_date
