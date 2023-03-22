@@ -5,65 +5,62 @@ models:
     description: staging for SafeGraph Marketplace table
     columns:
       - name: placekey
-        description: 
-        tests:
-          - unique
-          - not_null
+        description: tbd
       - name: parent_placekey
-        description:  
+        description:  tbd 
       - name: safegraph_brand_ids 
-        description:
+        description: tbd
       - name: location_name
-        description:
+        description: tbd
       - name: brands
-        description:
+        description: tbd
       - name: store_id
-        description:
+        description: tbd
       - name: top_category
-        description:
+        description: tbd
       - name: sub_category
-        description:
+        description: tbd
       - name: naics_code
-        description:
+        description: tbd
       - name: latitude
-        description:
+        description: tbd
       - name: longitude
-        description:
+        description: tbd
       - name: street_address
-        description:
+        description: tbd
       - name: city
-        description:
+        description: tbd
       - name: region
-        description:
+        description: tbd
       - name: postal_code
-        description:
+        description: tbd
       - name: open_hours
-        description:
+        description: tbd
       - name: category_tags
-        description:
+        description: tbd
       - name: opened_on
-        description:
+        description: tbd
       - name: closed_on
-        description:
+        description: tbd
       - name: tracking_closed_since
-        description:
+        description: tbd
       - name: geometry_type
-        description:
+        description: tbd
       - name: polygon_wkt
-        description:
+        description: tbd
       - name: polygon_class
-        description:
+        description: tbd
       - name: enclosed
-        description:
+        description: tbd
       - name: phone_number
-        description:
+        description: tbd
       - name: is_synthetic
-        description:
+        description: tbd
       - name: includes_parking_lot
-        description:
+        description: tbd
       - name: wkt_area_sq_meters
-        description:
+        description: tbd
       - name: country
-        description:
+        description: tbd
       - name: location_id
-        description:
+        description: tbd
