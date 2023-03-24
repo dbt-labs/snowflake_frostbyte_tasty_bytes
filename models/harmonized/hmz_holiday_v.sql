@@ -22,8 +22,7 @@ final as (
     FROM cybersyn_holiday ph
     JOIN country ts
         ON ph.iso_alpha2 = ts.iso_country
-    WHERE 1=1
-        AND ph.date >= '01/01/2019' -- first day of Tasty Bytes Sales
+    WHERE ph.date >= '01/01/2019' -- first day of Tasty Bytes Sales
         AND ph.is_financial = TRUE -- federal/bank level holiday
         AND ph.subdivision IS NULL -- only country level holiday
 )

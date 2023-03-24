@@ -1,19 +1,15 @@
-{config(materialized="view"}
-
-CREATE OR REPLACE VIEW frostbyte_tasty_bytes.harmonized.warehouse_inbound_v
-COMMENT = 'Warehouse Inbound Purchase Order View'
-    AS
 WITH _all_warehouses_all_items AS
 (
 SELECT 
     w.* RENAME name AS warehouse_name,
     i.* RENAME (name AS item_name, category AS item_category),
     v.* EXCLUDE (vendor_id) RENAME name AS vendor_name
-FROM frostbyte_tasty_bytes.raw_supply_chain.warehouse w
-JOIN frostbyte_tasty_bytes.raw_supply_chain.item i
-JOIN frostbyte_tasty_bytes.raw_supply_chain.vendor v
+FROM {{ ref('stg_warehouse') }} w
+JOIN {{ ref('stg_item') }} i
+JOIN {{ ref('stg_vendor') }} v
     ON i.category = v.category
 ),
+
 _all_warehouses_all_items_all_dates AS
 (
 SELECT 
@@ -35,10 +31,9 @@ SELECT
     awai.image_url,
     awai.vendor_id,
     awai.vendor_name
-FROM frostbyte_tasty_bytes.raw_supply_chain.dim_date dd
+FROM {{ ref('stg_dim_date') }} dd
 JOIN _all_warehouses_all_items awai
-WHERE 1=1
-    AND dd.date >= '10/14/2022'
+WHERE dd.date >= '10/14/2022'
     AND dd.date <= CURRENT_DATE()
 ),
 _warehouse_po AS 
@@ -58,10 +53,10 @@ SELECT
     pod.quantity,
     pod.manufacturing_date,
     pod.expiration_date
-FROM frostbyte_tasty_bytes.raw_supply_chain.purchase_order_header poh
-JOIN frostbyte_tasty_bytes.raw_supply_chain.purchase_order_detail pod
+FROM {{ ref('stg_purchase_order_header') }} poh
+JOIN {{ ref('stg_purchase_order_detail') }} pod
 	ON poh.po_id = pod.po_id
-JOIN frostbyte_tasty_bytes.raw_supply_chain.vendor v
+JOIN {{ ref('stg_vendor') }} v
 	ON v.vendor_id = poh.vendor_id
 )
 SELECT 
@@ -76,4 +71,4 @@ FROM _all_warehouses_all_items_all_dates awaiad
 LEFT JOIN _warehouse_po wp
     ON wp.delivery_date = awaiad.date
     AND wp.warehouse_id = awaiad.warehouse_id
-    AND wp.item_id = awaiad.item_id;
+    AND wp.item_id = awaiad.item_id

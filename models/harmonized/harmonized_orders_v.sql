@@ -1,7 +1,4 @@
-{config(materialized="view"}
 
-CREATE OR REPLACE VIEW frostbyte_tasty_bytes.harmonized.orders_v
-    AS
 SELECT 
     oh.order_id,
     oh.truck_id,
@@ -35,16 +32,16 @@ SELECT
     oh.order_tax_amount,
     oh.order_discount_amount,
     oh.order_total
-FROM frostbyte_tasty_bytes.raw_pos.order_detail od
-JOIN frostbyte_tasty_bytes.raw_pos.order_header oh
+FROM {{ ref('stg_order_detail') }} od
+JOIN {{ ref('stg_order_header') }} oh
     ON od.order_id = oh.order_id
-JOIN frostbyte_tasty_bytes.raw_pos.truck t
+JOIN {{ ref('stg_truck') }} t
     ON oh.truck_id = t.truck_id
-JOIN frostbyte_tasty_bytes.raw_pos.menu m
+JOIN {{ ref('stg_menu') }} m
     ON od.menu_item_id = m.menu_item_id
-JOIN frostbyte_tasty_bytes.raw_pos.franchise f
+JOIN {{ ref('stg_franchise') }} f
     ON t.franchise_id = f.franchise_id
-JOIN frostbyte_tasty_bytes.raw_pos.location l
+JOIN {{ ref('stg_location') }} l
     ON oh.location_id = l.location_id
-LEFT JOIN frostbyte_tasty_bytes.raw_customer.customer_loyalty cl
-    ON oh.customer_id = cl.customer_id;
+LEFT JOIN {{ ref('stg_customer_loyalty') }} cl
+    ON oh.customer_id = cl.customer_id

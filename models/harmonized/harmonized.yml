@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: truck_inbound_v
+    description: Truck Inbound Inventory Distribution View
+
+  - name: truck_item_usage_v
+    description: Truck Item_ID Level Inventory Daily Usage View
+
+  - name: warehouse_inbound_v
+    description: Warehouse Inbound Purchase Order View
+
+  - name: warehouse_outbound_v
+    description: Warehouse Outbound Purchase Order View

@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: daily_order_profit_v
+    description: Daily Order Level Sales, COGS, Gross Profit and Sales Margin Percentages
+
+
+  - name: orders_v
+    description: Tasty Bytes Order Detail View
+
+  - name: truck_inventory_v
+    description: Truck Item_ID Level Inventory Daily History View
+
+  - name: warehouse_inventory_v
+    description: Warehouse Item_ID Level Inventory Daily History View

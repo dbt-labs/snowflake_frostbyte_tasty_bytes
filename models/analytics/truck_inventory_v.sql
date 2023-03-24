@@ -1,6 +1,3 @@
-CREATE OR REPLACE VIEW frostbyte_tasty_bytes.analytics.truck_inventory_v
-COMMENT = 'Truck Item_ID Level Inventory Daily History View'
-    AS
 SELECT 
     ti.date,
     ti.truck_id,
@@ -18,9 +15,9 @@ SELECT
     END AS inventory_status,
     (quantity_on_truck * ti.unit_price) AS cost_of_inventory,
     ti.* EXCLUDE (date, truck_id, item_id, quantity_added, expiration_date, image_url)
-FROM frostbyte_tasty_bytes.harmonized.truck_inbound_v ti
-JOIN frostbyte_tasty_bytes.harmonized.truck_item_usage_v tiu
+FROM {{ ref('truck_inbound_v') }} ti
+JOIN {{ ref('truck_item_usage_v') }} tiu
     ON ti.date = tiu.date
     AND ti.truck_id = tiu.truck_id
     AND ti.item_id = tiu.item_id
-ORDER BY ti.truck_id, ti.date, ti.item_id;
+ORDER BY ti.truck_id, ti.date, ti.item_id

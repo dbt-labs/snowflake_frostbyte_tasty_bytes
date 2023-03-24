@@ -34,6 +34,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   tasty_bytes:
     # Applies to all files under models/example/
+    +persist_docs:
+      relation: true
+      columns: true
     staging:
       materialized: view
       raw_pos:
