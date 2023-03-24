@@ -1,8 +1,3 @@
-{{
-    config(
-        materialized = 'view'
-    )
-}}
 
 with hmz_holiday as (
 
