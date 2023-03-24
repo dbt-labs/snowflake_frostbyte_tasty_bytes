@@ -1,11 +1,10 @@
-{{ config(materialized="view", sort="dh_id", dist="dh_id") }}
 
 with
     source as (
-        select
-            dh_id, truck_id, warehouse_id, distribution_date, created_date, updated_date
+        select *
         from {{ source("raw_supply_chain", "distribution_header") }}
     ),
+
     renamed as (
         select
             dh_id as dh_id,
@@ -16,5 +15,6 @@ with
             updated_date as updated_date
         from source
     )
+    
 select *
 from renamed

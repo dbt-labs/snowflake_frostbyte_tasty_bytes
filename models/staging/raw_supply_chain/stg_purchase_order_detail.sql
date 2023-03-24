@@ -1,22 +1,10 @@
-{{ config(materialized="view", sort="po_detail_id", dist="po_detail_id") }}
 
 with
     source as (
-        select
-            po_detail_id,
-            po_id,
-            warehouse_id,
-            vendor_id,
-            item_id,
-            line_item_id,
-            quantity,
-            manufacturing_date,
-            expiration_date,
-            unit_price,
-            created_date,
-            updated_date
+        select *
         from {{ source("raw_supply_chain", "purchase_order_detail") }}
     ),
+
     renamed as (
         select
             po_detail_id as po_detail_id,
@@ -33,5 +21,6 @@ with
             updated_date as updated_date
         from source
     )
+    
 select *
 from renamed

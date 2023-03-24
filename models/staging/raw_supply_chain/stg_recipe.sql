@@ -1,10 +1,10 @@
-{{ config(materialized="view", sort="recipe_id", dist="recipe_id") }}
 
 with
     source as (
-        select recipe_id, menu_item_id, menu_item_line_item, item_id, unit_quantity
+        select *
         from {{ source("raw_supply_chain", "recipe") }}
     ),
+
     renamed as (
         select
             recipe_id as recipe_id,
@@ -14,5 +14,6 @@ with
             unit_quantity as unit_quantity
         from source
     )
+    
 select *
 from renamed

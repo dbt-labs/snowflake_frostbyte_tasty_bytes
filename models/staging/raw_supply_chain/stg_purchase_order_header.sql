@@ -1,23 +1,10 @@
-{{ config(materialized="view", sort="po_id", dist="po_id") }}
 
 with
     source as (
-        select
-            po_id,
-            vendor_id,
-            shipment_id,
-            po_date,
-            po_total,
-            warehouse_id,
-            shipment_date,
-            tracking_id,
-            expected_date,
-            delivery_date,
-            po_status,
-            created_date,
-            updated_date
+        select *
         from {{ source("raw_supply_chain", "purchase_order_header") }}
     ),
+
     renamed as (
         select
             po_id as po_id,
@@ -35,5 +22,6 @@ with
             updated_date as updated_date
         from source
     )
+    
 select *
 from renamed

@@ -1,19 +1,10 @@
-{{ config(materialized="view", sort="dh_detail_id", dist="dh_detail_id") }}
 
 with
     source as (
-        select
-            item_id,
-            name,
-            category,
-            unit,
-            unit_price,
-            unit_currency,
-            shelf_life_days,
-            vendor_id,
-            image_url
+        select *
         from {{ source("raw_supply_chain", "item") }}
     ),
+
     renamed as (
         select
             item_id as item_id,
@@ -27,5 +18,6 @@ with
             image_url as image_url
         from source
     )
+    
 select *
 from renamed
