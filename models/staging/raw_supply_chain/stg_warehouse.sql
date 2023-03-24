@@ -1,10 +1,10 @@
-{{ config(materialized="view", sort="warehouse_id", dist="warehouse_id") }}
 
 with
     source as (
-        select warehouse_id, name, city, country, address, latitude, longitude
+        select *
         from {{ source("raw_supply_chain", "warehouse") }}
     ),
+
     renamed as (
         select
             warehouse_id as warehouse_id,
@@ -16,5 +16,6 @@ with
             longitude as longitude
         from source
     )
+    
 select *
 from renamed

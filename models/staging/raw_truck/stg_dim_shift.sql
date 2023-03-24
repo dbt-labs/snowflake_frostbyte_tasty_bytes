@@ -1,10 +1,10 @@
-{{ config(materialized="view", sort="shift_id", dist="shift_id") }}
 
 with
     source as (
-        select shift_id, shift_type, shift_start_time, shift_end_time, pm_shift_id
-        from {{ source("raw_truck", "dim_shift") }}
+        select *
+          from {{ source("raw_truck", "dim_shift") }}
     ),
+    
     renamed as (
         select
             shift_id as shift_id,
@@ -14,5 +14,6 @@ with
             pm_shift_id as pm_shift_id
         from source
     )
+
 select *
 from renamed

@@ -1,8 +1,3 @@
-{{
-    config(
-        materialized = 'view'
-    )
-}}
 
 with safegraph as (
 

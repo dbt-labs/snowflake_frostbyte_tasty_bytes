@@ -1,10 +1,10 @@
-{{ config(materialized="view", sort="location_id", dist="location_id") }}
 
 with
     source as (
-        select location_id, placekey, location, city, region, iso_country_code, country
+        select *
         from {{ source("raw_pos", "location") }}
     ),
+
     renamed as (
         select
             location_id as location_id,
@@ -16,5 +16,6 @@ with
             country as country
         from source
     )
+    
 select *
 from renamed

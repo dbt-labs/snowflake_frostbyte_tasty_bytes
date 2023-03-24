@@ -1,10 +1,10 @@
-{{ config(materialized="view", sort="customer_id", dist="customer_id") }}
 
 with
     source as (
-        select customer_id, first_name, last_name, city, country, postal_code, preferred_language, gender, favourite_brand, marital_status, children_count, sign_up_date, birthday_date, e_mail, phone_number
-        from {{ source("raw_customer", "customer_loyalty") }}
+        select *
+          from {{ source("raw_customer", "customer_loyalty") }}
     ),
+
     renamed as (
         select
             customer_id as customer_id,
@@ -24,5 +24,6 @@ with
             phone_number as phone_number
         from source
     )
+    
 select *
 from renamed

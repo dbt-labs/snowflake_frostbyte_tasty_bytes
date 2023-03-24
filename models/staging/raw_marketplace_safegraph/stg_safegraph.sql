@@ -1,40 +1,10 @@
-{{ config(materialized="view") }}
 
 with
     source as (
-        select
-            placekey,
-            parent_placekey,
-            safegraph_brand_ids,
-            location_name,
-            brands,
-            store_id,
-            top_category,
-            sub_category,
-            naics_code,
-            latitude,
-            longitude,
-            street_address,
-            city,
-            region,
-            postal_code,
-            open_hours,
-            category_tags,
-            opened_on,
-            closed_on,
-            tracking_closed_since,
-            geometry_type,
-            polygon_wkt,
-            polygon_class,
-            enclosed,
-            phone_number,
-            is_synthetic,
-            includes_parking_lot,
-            wkt_area_sq_meters,
-            country,
-            location_id
-        from {{ source("raw_marketplace_safegraph", "frostbyte_tb_safegraph_s") }}
+        select *
+          from {{ source("raw_marketplace_safegraph", "frostbyte_tb_safegraph_s") }}
     ),
+    
     renamed as (
         select
             placekey,
@@ -69,5 +39,6 @@ with
             location_id as location_id
         from source
     )
+
 select *
 from renamed
