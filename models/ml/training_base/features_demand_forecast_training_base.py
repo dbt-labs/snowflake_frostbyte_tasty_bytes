@@ -85,7 +85,9 @@ def model(dbt, session):
     & (df_future.location_id == df_hist.location_id)
     & (df_future.menu_item_id == df_hist.menu_item_id),
     "left"
-).select(
+    ).select(
     [df_future.col(c).alias(c) for c in future_features + target]
     + [df_hist.col(c).alias(c) for c in hist_features]
-).cache_result()
+    ).cache_result()
+
+    return df_training
