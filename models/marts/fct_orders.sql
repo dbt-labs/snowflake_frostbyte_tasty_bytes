@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized = "table",
+        transient = false
+    )
+}}
 
 with int_holiday as (
 
