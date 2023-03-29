@@ -1,13 +1,10 @@
-import pandas as pd
+import datetime
+import snowflake.snowpark.functions as F
+
 
 def model(dbt, session):
 
-    dbt.config(
-        materialized = "table",
-        packages = ["pandas"]
-    )
-
-    orders_ref = dbt.ref("orders_v").to_pandas()
+    orders_df = dbt.ref("orders_v")
 
     ## Create Aggregate Table
     # Define features
@@ -24,12 +21,13 @@ def model(dbt, session):
         "unit_price",
     ]
 
-    # Define target
+    # Define target and maxdate
     target = ["quantity"]
+    max_date = datetime.date(2022, 11, 1)
 
     # Create DataFrame and define AM/PM shifts
     df_base = (
-        orders_ref
+        orders_df
         .where(F.col("date") <= max_date)
         .with_column(
             "shift",
@@ -44,6 +42,5 @@ def model(dbt, session):
     df_base = df_base.with_column(
         "sales", F.round(F.col("quantity") * F.col("unit_price"), 2)
     )
-
 
     return df_base

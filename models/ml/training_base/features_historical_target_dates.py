@@ -1,5 +1,5 @@
-import pandas as pd
-
+import snowflake.snowpark.functions as F
+from snowflake.snowpark import Window
 
 # Get average monthly sales from previous year
 def get_last_year_same_month_sales(df, group_list):
@@ -62,12 +62,7 @@ def get_day_of_week_trends(df, group_list):
 
 def model(dbt, session):
 
-    dbt.config(
-        materialized = "table",
-        packages = ["pandas"]
-    )
-
-    df_future = dbt.ref("orders_agg_features_dates")
+    df_future = dbt.ref("features_future_dates")
 
     # Define aggregation grouping
     grouping_lists = [

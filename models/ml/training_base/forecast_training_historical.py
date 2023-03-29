@@ -1,13 +1,9 @@
-import pandas as pd
+from snowflake.snowpark import Window
+import snowflake.snowpark.functions as F
 
 def model(dbt, session):
 
-    dbt.config(
-        materialized = "table",
-        packages = ["pandas"]
-    )
-
-    df_expanded = dbt.ref("orders_agg_trucks_expanded")
+    df_expanded = dbt.ref("aggregate_historical_features")
 
     # Get rolling features
     agg_period = [7, 14, 28]

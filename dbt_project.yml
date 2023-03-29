@@ -47,5 +47,4 @@ models:
         +schema: stg_supply_chain
     ml:
       materialized: table
-      +pre-hook: "USE ROLE TASTY_DATA_SCIENTIST"
       +snowflake_warehouse: "TASTY_SNOWPARK_WH" 

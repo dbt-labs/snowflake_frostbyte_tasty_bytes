@@ -1,13 +1,8 @@
-import pandas as pd
+import snowflake.snowpark.functions as F
 
 def model(dbt, session):
 
-    dbt.config(
-        materialized = "table",
-        packages = ["pandas"]
-    )
-
-    df_base = dbt.ref("feature_sales_aggregate")   
+    df_base = dbt.ref("features_sales_aggregate")   
    
    
     # Add day of week 

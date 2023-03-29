@@ -1,20 +1,14 @@
-import pandas as pd
+import snowflake.snowpark.functions as F
 
 def model(dbt, session):
 
-    dbt.config(
-        materialized = "table",
-        packages = ["pandas"]
-    )
-
-
-    df_future = dbt.ref("features_hist_target_dates")
+    df_future = dbt.ref("features_historical_target_dates")
 
     # Target date feature table
     df_future = df_future.with_column("forecast_date", F.dateadd("day", -(F.col("day_of_week") + 9), F.col("date")))
 
     # Forecast date feature table
-    df_hist = session.table("forecast_training_historical")
+    df_hist = dbt.ref("forecast_training_historical")
 
     # Define feautres
 
