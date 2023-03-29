@@ -7,7 +7,7 @@ def model(dbt, session):
         packages = ["pandas"]
     )
 
-    df_expanded = dbt.ref("orders_agg_trucks_expanded.sql")
+    df_expanded = dbt.ref("orders_agg_trucks_expanded")
 
     # Get rolling features
     agg_period = [7, 14, 28]
@@ -62,4 +62,4 @@ def model(dbt, session):
             df_hist = df_hist.cache_result()
             original_columns = df_hist.columns
 
-            return df_hist
+    return df_hist

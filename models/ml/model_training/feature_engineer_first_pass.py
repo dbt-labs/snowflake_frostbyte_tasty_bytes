@@ -8,7 +8,7 @@ def model(dbt, session):
     )
 
 
-    df_future = dbt.ref("features_demand_forecast_training_base.sql")
+    df_future = dbt.ref("features_demand_forecast_training_base")
 
     # Get earliest date
     min_date = df.select(F.dateadd("year", F.lit(1), F.min("date"))).collect()[0][0]

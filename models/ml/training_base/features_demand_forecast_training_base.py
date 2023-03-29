@@ -8,7 +8,7 @@ def model(dbt, session):
     )
 
 
-    df_future = dbt.ref("features_hist_target_dates.sql")
+    df_future = dbt.ref("features_hist_target_dates")
 
     # Target date feature table
     df_future = df_future.with_column("forecast_date", F.dateadd("day", -(F.col("day_of_week") + 9), F.col("date")))
