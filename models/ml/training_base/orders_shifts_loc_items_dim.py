@@ -7,7 +7,7 @@ def model(dbt, session):
         packages = ["pandas"]
     )
 
-    df_base = dbt.ref("orders_agg_features")
+    df_base = dbt.ref("feature_sales_aggregate")
 
     ## Create Dimensional Table
     df = df_base
@@ -27,6 +27,6 @@ def model(dbt, session):
     # Cross join to create dimensional table
     df_dim = locations.cross_join(dates).cache_result()
     df_dim = df_dim.cross_join(items).cache_result()
-    df_dim = df_dim.cross_join(shifts).cache_result()
+    df_dim = df_dim.cross_join(shifts)
 
     return df_dim

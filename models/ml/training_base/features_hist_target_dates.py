@@ -85,6 +85,4 @@ def model(dbt, session):
     for grouping in grouping_lists:
         df_future = get_day_of_week_trends(df_future, grouping)
 
-    df_future = df_future.cache_result()
-
     return df_future

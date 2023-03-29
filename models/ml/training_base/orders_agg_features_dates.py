@@ -7,7 +7,7 @@ def model(dbt, session):
         packages = ["pandas"]
     )
 
-    df_base = dbt.ref("orders_agg_features")   
+    df_base = dbt.ref("feature_sales_aggregate")   
    
    
     # Add day of week 
@@ -17,6 +17,6 @@ def model(dbt, session):
     df = df.with_column("month_of_year", F.month(F.col("date")))
 
     # Add year
-    df = df.with_column("year", F.year(F.col("date"))).cache_result()
+    df = df.with_column("year", F.year(F.col("date")))
 
     return df

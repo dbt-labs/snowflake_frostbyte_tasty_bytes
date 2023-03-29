@@ -88,6 +88,6 @@ def model(dbt, session):
     ).select(
     [df_future.col(c).alias(c) for c in future_features + target]
     + [df_hist.col(c).alias(c) for c in hist_features]
-    ).cache_result()
+    )
 
     return df_training
