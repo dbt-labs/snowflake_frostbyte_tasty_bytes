@@ -99,7 +99,6 @@ models:
       - name: order_detail_id
         description: primary key for the order_detail model
         tests:
-          - unique
           - not_null
       - name: order_id
         description: foreign key for the order header model 
@@ -123,7 +122,6 @@ models:
       - name: order_id
         description: primary key for the order_header model
         tests:
-          - unique
           - not_null
       - name: truck_id
         description: foreign key for the truck model

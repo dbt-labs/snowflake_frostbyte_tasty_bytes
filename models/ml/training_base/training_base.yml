@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: aggregate_historical_features
+  - name: demand_forecast_training_base
+  - name: features_future_dates
+  - name: features_historical_target_dates
+  - name: features_sales_aggregate
+  - name: forecast_training_historical

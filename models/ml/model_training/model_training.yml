@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: feature_engineer_prepare_data
+  - name: demand_forecast_test
+  - name: demand_forecast_train
