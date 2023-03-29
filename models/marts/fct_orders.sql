@@ -1,12 +1,12 @@
 
-with hmz_holiday as (
+with int_holiday as (
 
-    select * from {{ ref('hmz_holiday_v') }}
+    select * from {{ ref('int_holiday') }}
 
 ),
 hmz_orders as (
 
-    select * from {{ ref('hmz_orders_v') }}
+    select * from {{ ref('int_orders') }}
 ),
 hmz_safegraph as (
 
@@ -24,7 +24,7 @@ final as (
         on sp.location_id = o.location_id
         and sp.city = o.primary_city
         and sp.country = o.country
-    left join hmz_holiday h
+    left join int_holiday h
         on h.date = date(o.order_ts)
         and h.country = o.country
 )
