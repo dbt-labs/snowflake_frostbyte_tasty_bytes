@@ -55,5 +55,6 @@ def model(dbt, session):
             new_columns.append(column_name)
 
             df_hist = df_hist.join(df_agg, partition).select([df_hist.col(c).alias(c) for c in original_columns] + new_columns)
+            original_columns = df_hist.columns
 
     return df_hist
