@@ -20,9 +20,5 @@ def model(dbt, session):
             ).over(partition_by="hp_id")
         )
     ).sort(F.col('RMSE').asc())
-    best_param_id = tune_results.select('hp_id').collect()[0][0]
 
-    params = tuning_df.drop("feature_vector").filter(F.col("HP_ID")==best_param_id).distinct()
-    params = params.drop('HP_ID').to_pandas()
-
-    return params
+    return tune_results
