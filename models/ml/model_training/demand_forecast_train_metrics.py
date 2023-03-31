@@ -1,10 +1,15 @@
 import pandas as pd
 import cachetools
 import snowflake.snowpark.functions as F
+import snowflake.snowpark.types as T
 
 def model(dbt, session):
 
     dbt.config(packages=["pandas","cachetools"])
+
+    train_df = dbt.ref("demand_forecast_train")
+    test_df = dbt.ref("demand_forecast_test")
+    feature_cols = train_df.drop("quantity").columns
 
     # Function to load the model from file and cache the result
     @cachetools.cached(cache={})
@@ -55,8 +60,6 @@ def model(dbt, session):
         packages=["xgboost", "joblib", "cachetools"]
     )
 
-    train_df = dbt.ref("demand_forecast_train")
-    feature_cols = train_df.drop("quantity").columns
     model_name = "xgboost_demand_forecast_model.sav"
 
     # Train evalutation RMSE
