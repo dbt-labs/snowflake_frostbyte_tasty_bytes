@@ -23,7 +23,7 @@ def model(dbt, session):
     df = df.drop("date",
             "primary_city",
             "location_id",
-            "truck_id",
+            #"truck_id",
             "menu_type",
             "menu_item_id",)
 

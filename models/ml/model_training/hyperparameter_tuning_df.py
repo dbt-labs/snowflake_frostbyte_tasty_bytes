@@ -15,9 +15,8 @@ def model(dbt, session):
     train_df = dbt.ref("demand_forecast_train")
 
     param_grid = {
-        "MAX_DEPTH": [3, 6, 9, 12],
-        "LEARNING_RATE": [0.01, 0.03, 0.1, 0.3],
-        "GAMMA": [3, 4, 5],
+        "MAX_DEPTH": [6, 9, 12],
+        "LEARNING_RATE": [0.01, 0.03, 0.1],
         "N_ESTIMATORS": [100, 200, 300],
     }
 
@@ -25,7 +24,6 @@ def model(dbt, session):
         [
             T.StructField("MAX_DEPTH", T.IntegerType()),
             T.StructField("LEARNING_RATE", T.FloatType()),
-            T.StructField("GAMMA", T.IntegerType()),
             T.StructField("N_ESTIMATORS", T.IntegerType()),
         ]
     )
@@ -39,7 +37,7 @@ def model(dbt, session):
         "*", F.row_number().over(Window.order_by(F.lit(1))).as_("HP_ID")
     )
 
-    features_df = train_df.select(F.array_construct('*').alias("feature_vector"))
+    features_df = train_df.sample(n=1000).select(F.array_construct('*').alias("feature_vector"))
     feature_columns = train_df.columns
     tuning_df = params_df.crossJoin(features_df)
 
@@ -48,7 +46,6 @@ def model(dbt, session):
         [
             T.StructField("MAX_DEPTH", T.IntegerType()),
             T.StructField("LEARNING_RATE", T.FloatType()),
-            T.StructField("GAMMA", T.IntegerType()),
             T.StructField("N_ESTIMATORS", T.IntegerType()),
             T.StructField("RMSE", T.FloatType()),
         ]
@@ -59,7 +56,6 @@ def model(dbt, session):
         input_types=[
             T.IntegerType(),
             T.FloatType(),
-            T.IntegerType(),
             T.IntegerType(),
             T.ArrayType()
             
@@ -76,7 +72,6 @@ def model(dbt, session):
         def __init__(self):
             self.MAX_DEPTH = None
             self.LEARNING_RATE = None
-            self.GAMMA = None
             self.N_ESTIMATORS = None
             self.feature_vector = []
             self.processedFirstRow = False
@@ -85,18 +80,16 @@ def model(dbt, session):
             self,
             MAX_DEPTH,
             LEARNING_RATE,
-            GAMMA,
             N_ESTIMATORS,
             feature_vector,
         ):
             if not self.processedFirstRow:
                 self.MAX_DEPTH = MAX_DEPTH
                 self.LEARNING_RATE = LEARNING_RATE
-                self.GAMMA = GAMMA
                 self.N_ESTIMATORS = N_ESTIMATORS
                 self.processedFirstRow = True
             
-            self.feature_vector.append(feature_vector)
+            self.feature_vector.append([None if f == 'undefined' else f for f in feature_vector])
 
         def end_partition(self):
             from sklearn.metrics import mean_squared_error
@@ -121,9 +114,9 @@ def model(dbt, session):
             model = XGBRegressor(
                 max_depth=self.MAX_DEPTH,
                 learning_rate=self.LEARNING_RATE,
-                gamma=self.GAMMA,
                 n_estimators=self.N_ESTIMATORS,
                 n_jobs=1,
+                seed=0,
             )
             
             model.fit(X_train, y_train)
@@ -133,9 +126,8 @@ def model(dbt, session):
             yield (
                 self.MAX_DEPTH,
                 self.LEARNING_RATE,
-                self.GAMMA,
                 self.N_ESTIMATORS,
                 mean_squared_error(y_test, y_pred),
             )
-
+            
     return tuning_df

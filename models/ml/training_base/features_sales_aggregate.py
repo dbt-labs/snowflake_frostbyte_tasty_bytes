@@ -13,15 +13,13 @@ def model(dbt, session):
         "shift",
         "primary_city",
         "location_id",
-        "latitude",
-        "longitude",
         "truck_id",
         "menu_type",
         "menu_item_id",
         "unit_price",
     ]
 
-    # Define target and maxdate
+    # Define target
     target = ["quantity"]
     max_date = datetime.date(2022, 11, 1)
 
@@ -31,7 +29,7 @@ def model(dbt, session):
         .where(F.col("date") <= max_date)
         .with_column(
             "shift",
-            F.iff(F.builtin("DATE_PART")("HOUR", F.col("order_ts")) < "15", "AM", "PM")
+            F.iff(F.builtin("DATE_PART")("HOUR", F.col("order_ts")) < "15", "AM", "PM"),
         )
     )
 
