@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: menu_items_sales_aggregate
+  - name: explode_sales_features
+  - name: get_sales_historical_trends
+  - name: get_sales_short_term_trends
+  - name: menu_item_forecast

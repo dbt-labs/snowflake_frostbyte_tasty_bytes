@@ -68,7 +68,7 @@ def get_all_time_trends(df_predictions, df_historical, partitions):
 def model(dbt, session):
 
     df_future_dates = dbt.ref("get_sales_historical_trends")
-    df = dbt.ref("inference_sales_aggregate")
+    df = dbt.ref("menu_item_sales_aggregate")
     df_locations = dbt.ref("orders_v").select("location_id", "latitude", "longitude").distinct()
     df_holidays = dbt.ref("holiday_v").select("date", "city", "holiday_flag").distinct()
 

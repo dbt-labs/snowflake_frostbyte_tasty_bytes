@@ -4,7 +4,7 @@ import datetime
 
 def model(dbt, session):
 
-    df = dbt.ref("inference_sales_aggregate")
+    df = dbt.ref("menu_item_sales_aggregate")
 
     # Most recent day we have sales data (should be today / day we predict)
     max_date = df.select(F.max(F.col("date"))).collect()[0][0]

@@ -63,7 +63,7 @@ def get_day_of_week_trends(df_predictions, df_historical, group_list,max_date):
 def model(dbt, session):
 
     df_future_dates = dbt.ref("explode_sales_features")
-    df = dbt.ref("inference_sales_aggregate")
+    df = dbt.ref("menu_item_sales_aggregate")
 
     # Most recent day we have sales data (should be today / day we predict)
     max_date = df.select(F.max(F.col("date"))).collect()[0][0]
