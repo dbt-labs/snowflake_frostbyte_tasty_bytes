@@ -4,3 +4,8 @@ models:
   - name: feature_engineer_prepare_data
   - name: demand_forecast_test
   - name: demand_forecast_train
+  - name: demand_forecast_train_demo
+  - name: hyperparameter_tuning_df
+  - name: hyperparameter_tuning_results
+  - name: model_training
+  - name: demand_forecast_train_metrics

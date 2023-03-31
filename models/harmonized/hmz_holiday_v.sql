@@ -12,6 +12,7 @@ final as (
     select 
         ph.date,
         ts.country,
+        ts.city,
         ph.holiday_name,
         1 AS holiday_flag
     FROM cybersyn_holiday ph
