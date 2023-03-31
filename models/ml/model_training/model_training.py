@@ -3,12 +3,11 @@ import snowflake.snowpark.functions as F
 from snowflake.snowpark import Session
 from snowflake.snowpark import DataFrame
 import pandas as pd
-from xgboost import XGBRegressor
-from joblib import dump
+import json
 
 def model(dbt, session):
 
-    dbt.config(packages=["pandas","xgboost","joblib"])
+    dbt.config(packages=["pandas"])
 
     def train_xgboost(
         session: Session,
@@ -56,7 +55,7 @@ def model(dbt, session):
     training_table = dbt.ref("demand_forecast_train_demo")
     train_df = dbt.ref("demand_forecast_train")
 
-    best_param_id = tune_results_df.select('hp_id').collect()[0][0]
+    best_param_id = tune_results_df.sort(F.col('RMSE').asc()).select('hp_id').collect()[0][0]
     feature_cols = train_df.drop("quantity").columns
 
     params = tuning_df.drop("feature_vector").filter(F.col("HP_ID")==best_param_id).distinct()
@@ -77,12 +76,12 @@ def model(dbt, session):
     feature_importance = train_xgboost_snowflake(
         session,
         training_table.table_name,
-        feature_cols_strip,
+        feature_cols,
         target_col,
         model_name,
         params
     )   
 
-    return tuning_df
+    return  pd.DataFrame([json.loads(feature_importance)])
 
 

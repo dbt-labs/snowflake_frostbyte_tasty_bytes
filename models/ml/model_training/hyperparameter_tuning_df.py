@@ -11,13 +11,12 @@ def model(dbt, session):
         packages=["pandas"]
     )
 
-    test_df = dbt.ref("demand_forecast_test")
     train_df = dbt.ref("demand_forecast_train")
 
     param_grid = {
         "MAX_DEPTH": [6, 9, 12],
         "LEARNING_RATE": [0.01, 0.03, 0.1],
-        "N_ESTIMATORS": [100, 200, 300],
+        "N_ESTIMATORS": [100, 200, 300]
     }
 
     schema = T.StructType(
