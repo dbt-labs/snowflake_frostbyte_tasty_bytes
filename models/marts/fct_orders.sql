@@ -16,7 +16,7 @@ hmz_orders as (
 ),
 hmz_safegraph as (
 
-    select * from {{ ref('hmz_safegraph_poi') }}
+    select * from {{ ref('safegraph_poi') }}
 ),
 final as (
     select 

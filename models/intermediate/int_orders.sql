@@ -1,12 +1,8 @@
 
-with order_detail as (
+with order_header_detail as (
 
-    select * from {{ ref('stg_order_detail') }}
+    select * from {{ ref('stg_order_summary') }}
 
-),
-order_header as (
-
-    select * from {{ ref('stg_order_header') }}
 ),
 truck as (
 
@@ -34,52 +30,49 @@ customer_loyalty as (
 
 ),
 final as (
-    select 
-        oh.order_id,
-        oh.truck_id,
-        oh.order_ts,
-        od.order_detail_id,
-        od.line_number,
-        m.truck_brand_name,
-        m.menu_type,
-        t.primary_city,
-        t.region,
-        t.country,
-        t.franchise_flag,
-        t.franchise_id,
-        f.first_name as franchisee_first_name,
-        f.last_name as franchisee_last_name,
-        l.location_id,
-        cl.customer_id,
-        cl.first_name,
-        cl.last_name,
-        cl.e_mail,
-        cl.phone_number,
-        cl.children_count,
-        cl.gender,
-        cl.marital_status,
-        od.menu_item_id,
-        m.menu_item_name,
-        od.quantity,
-        od.unit_price,
-        od.price,
-        oh.order_amount,
-        oh.order_tax_amount,
-        oh.order_discount_amount,
-        oh.order_total
-            from order_detail od
-            join order_header oh
-                on od.order_id = oh.order_id
-            join truck t
-                on oh.truck_id = t.truck_id
-            join menu m
-                on od.menu_item_id = m.menu_item_id
-            join franchise f
-                on t.franchise_id = f.franchise_id
-            join location l
-                on oh.location_id = l.location_id
-            left join customer_loyalty cl
-                on oh.customer_id = cl.customer_id
+    select order_header_detail.order_id,
+           order_header_detail.truck_id,
+           order_header_detail.order_ts,
+           order_header_detail.order_detail_id,
+           order_header_detail.line_number,
+           order_header_detail.quantity,
+           order_header_detail.unit_price,
+           order_header_detail.price,
+           order_header_detail.menu_item_id,
+           order_header_detail.order_amount,
+           order_header_detail.order_tax_amount,
+           order_header_detail.order_discount_amount,
+           order_header_detail.order_total,
+           m.truck_brand_name,
+           m.menu_type,
+           t.primary_city,
+           t.region,
+           t.country,
+           t.franchise_flag,
+           t.franchise_id,
+           f.first_name as franchisee_first_name,
+           f.last_name as franchisee_last_name,
+           l.location_id,
+           cl.customer_id,
+           cl.first_name,
+           cl.last_name,
+           cl.e_mail,
+           cl.phone_number,
+           cl.children_count,
+           cl.gender,
+           cl.marital_status,
+           m.menu_item_name
+      from order_header_detail
+      join truck t
+        on order_header_detail.truck_id = t.truck_id
+      join menu m
+        on order_header_detail.menu_item_id = m.menu_item_id
+      join franchise f
+        on t.franchise_id = f.franchise_id
+      join location l
+        on order_header_detail.location_id = l.location_id
+      left join customer_loyalty cl
+        on order_header_detail.customer_id = cl.customer_id
 )
 select 
     *
