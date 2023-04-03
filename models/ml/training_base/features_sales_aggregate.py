@@ -6,7 +6,6 @@ def model(dbt, session):
 
     orders_df = dbt.ref("orders_v")
 
-    ## Create Aggregate Table
     # Define features
     order_features = [
         "date",
@@ -21,7 +20,7 @@ def model(dbt, session):
 
     # Define target
     target = ["quantity"]
-    max_date = datetime.date(2022, 11, 1)
+    max_date = datetime.date(2022, 10, 30)
 
     # Create DataFrame and define AM/PM shifts
     df_base = (

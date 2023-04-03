@@ -7,7 +7,6 @@ import pandas as pd
 def model(dbt, session):
 
     dbt.config(
-        pre_hook="CREATE STAGE IF NOT EXISTS forecast_stage",
         packages=["pandas"]
     )
 

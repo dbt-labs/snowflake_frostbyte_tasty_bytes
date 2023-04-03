@@ -22,26 +22,8 @@ def model(dbt, session):
     df_dim = df_dim.cross_join(items).cache_result()
     df_dim = df_dim.cross_join(shifts).cache_result()
 
-    # Get trucks
-    trucks = df.select("truck_id", "primary_city", "menu_type").distinct().cache_result()
-
-    # Join in truck id
-    df_dim = df_dim.join(
-        trucks,
-        (df_dim.primary_city == trucks.primary_city)
-        & (df_dim.menu_type == trucks.menu_type),
-    ).select(
-        "date",
-        "shift",
-        df_dim.primary_city.alias("primary_city"),
-        "location_id",
-        "truck_id",
-        df_dim.menu_type.alias("menu_type"),
-        "menu_item_id",
-    ).cache_result()
-
     # Join dimensional table with aggregate data
-    df_expanded = df_dim.join(df, ["date", "shift", "location_id", "menu_item_id"]).select(
+    df_expanded = df_dim.join(df, ["date", "shift", "location_id", "menu_item_id"], "left").select(
         [df_dim.col(c).alias(c) for c in df_dim.columns] + ["unit_price", "quantity", "sales"]
     )
 
