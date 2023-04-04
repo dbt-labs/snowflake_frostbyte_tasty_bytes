@@ -5,6 +5,9 @@ def model(dbt, session):
 
     df_future_dates = dbt.ref("get_sales_short_term_trends")
 
+    #this is to reference the UDF creation 
+    demand_forecast_udf = dbt.ref("demand_forecast_train_metrics")
+
     feature_cols = df_future_dates.drop(
         "MENU_ITEM_ID",
         "MENU_TYPE",
