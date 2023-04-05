@@ -6,8 +6,8 @@ def model(dbt, session):
 
     df = dbt.ref("menu_item_sales_aggregate")
 
-    # Most recent day we have sales data (should be today / day we predict)
-    max_date = df.select(F.max(F.col("date"))).collect()[0][0]
+    # Most recent Friday we have in our sales data
+    max_date = df.filter(F.dayofweek(F.col("date"))==5).select(F.max(F.col("date"))).collect()[0][0]
 
     # get a list of dates from T+9 to T+16
     df_future_dates = df.select(
