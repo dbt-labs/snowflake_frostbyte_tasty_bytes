@@ -17,7 +17,7 @@ menu as (
 
     select * from {{ ref('stg_menu') }}
 
-)
+),
 
 final as (
 
@@ -35,7 +35,7 @@ final as (
            order_detail.menu_item_id,
            order_detail.quantity,
            order_detail.unit_price,
-           order_detail.price
+           order_detail.price,
            truck.primary_city,
            truck.region,
            truck.country,

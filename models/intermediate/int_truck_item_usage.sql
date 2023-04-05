@@ -7,7 +7,7 @@ item as (
 
     select * from {{ ref('stg_item') }}
 
-),
+)
 
 select eod_stock_assignment.assignment_id,
        eod_stock_assignment.truck_id,

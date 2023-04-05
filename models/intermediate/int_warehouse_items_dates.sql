@@ -45,7 +45,7 @@ all_warehouses_all_items as (
       join vendor
         on item.item_category = vendor.vendor_category
 
-)
+),
 
 all_warehouses_all_items_all_dates as
 (
@@ -58,6 +58,7 @@ all_warehouses_all_items_all_dates as
            awai.warehouse_latitude,
            awai.warehouse_longitude,
            awai.item_id,
+           awai.item_name,
            awai.item_category,
            awai.vendor_category,
            awai.unit,

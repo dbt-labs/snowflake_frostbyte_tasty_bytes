@@ -22,7 +22,7 @@ final as (
            purchase_order_detail.item_id,
            purchase_order_detail.quantity, 
            purchase_order_detail.manufacturing_date,
-           purchase_order_detail.expiration_date,
+           purchase_order_detail.expiration_date
       from purchase_order_header
       join purchase_order_detail
         on purchase_order_header.po_id = purchase_order_detail.po_id
