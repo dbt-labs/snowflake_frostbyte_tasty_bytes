@@ -31,9 +31,10 @@ def model(dbt, session):
     df = df.with_column("shift", F.iff(F.col("shift") == "AM", 1, 0))
 
     # Split into training and testing
-    train_df, test_df = df.randomSplit([0.8, 0.2])
+    max_date = df.select(F.max("date")).collect()[0][0]
+    df = df.with_column("split_type",
+                        F.iff(F.col("date") <= (max_date - datetime.timedelta(days=30)),
+                                F.lit("train"),
+                                F.lit("test"))).drop("date")
 
-    train_df = train_df.with_column('split_type', lit('train'))
-    test_df = test_df.with_column('split_type', lit('test'))
-
-    return train_df.union(test_df)
+    return df

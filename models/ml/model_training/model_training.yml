@@ -3,7 +3,7 @@ version: 2
 models:
   - name: feature_engineer_prepare_data
     description: Cleansed table for model training. Includes third party features, such as holiday flag, latitude and longitude. Identification columns have been removed.
-     Categorical columns are represented as numeric. Data has been split into 80% training and 20% testing.
+     Categorical columns are represented as numeric. Data has been split into training and testing (30 day holdout).
   - name: demand_forecast_test
     description: Subset of the feature data (80%) to be used for model training.
   - name: demand_forecast_train
