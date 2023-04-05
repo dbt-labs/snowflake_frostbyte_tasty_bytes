@@ -1,12 +1,12 @@
 with in_out_detail as
 (   
-    select date,
+    select distribution_date as date,
            truck_id,
            item_id,
            item_name,
            unit_price,
            unit,
-           category,
+           item_category,
            shelf_life_days,
            po_id,
            quantity,
@@ -17,13 +17,13 @@ with in_out_detail as
 
     union
 
-    select date,
+    select created_date as date,
            truck_id,
            item_id,
            item_name,
            unit_price,
            unit,
-           category,
+           item_category,
            shelf_life_days,
            po_id,
            (quantity * -1) as quantity,
@@ -39,7 +39,7 @@ from {{ ref('int_truck_item_usage') }}
            item_name,
            unit_price,
            unit,
-           category,
+           item_category,
            shelf_life_days,
            po_id,
            expiration_date,
@@ -61,7 +61,7 @@ from {{ ref('int_truck_item_usage') }}
               item_name, 
               unit_price, 
               unit,
-              category, 
+              item_category, 
               shelf_life_days, 
               po_id, 
               expiration_date

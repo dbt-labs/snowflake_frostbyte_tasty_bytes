@@ -9,7 +9,7 @@ item as (
 
 ),
 final as(
-    select distribution_summary.distribution_date AS date,
+    select distribution_summary.distribution_date,
            distribution_summary.truck_id,
            distribution_summary.item_id,
            item.item_name,

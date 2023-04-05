@@ -10,7 +10,7 @@ with inventory_log as
            quantity,
            expiration_date,
            'IN' as direction,
-           dateadd('day', - 1, date) as created_date
+           dateadd('day', - 1, distribution_date) as created_date
       from {{ ref('int_truck_inbound') }}
 
     union all
@@ -24,7 +24,7 @@ with inventory_log as
            (quantity * -1) as quantity,
            expiration_date,
            'OUT' as direction,
-           date as created_date
+           created_date
       from {{ ref('int_truck_item_usage') }} 
 
 ),
