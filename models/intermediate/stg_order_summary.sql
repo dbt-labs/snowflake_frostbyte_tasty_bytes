@@ -8,6 +8,16 @@ order_header as (
     select * from {{ ref('stg_order_header') }}
     
 ),
+truck as (
+
+    select * from {{ ref('stg_truck') }}
+
+), 
+menu as (
+
+    select * from {{ ref('stg_menu') }}
+
+)
 
 final as (
 
@@ -26,9 +36,22 @@ final as (
            order_detail.quantity,
            order_detail.unit_price,
            order_detail.price
+           truck.primary_city,
+           truck.region,
+           truck.country,
+           truck.franchise_flag,
+           truck.franchise_id,
+           menu.truck_brand_name,
+           menu.menu_type,
+           menu.menu_item_name,
+           menu.cost_of_goods_usd
       from order_header
       join order_detail
         on order_header.order_id = order_detail.order_id
+      join truck
+        on order_header.truck_id = truck.truck_id
+      join menu
+        on order_detail.menu_item_id = menu.menu_item_id
 )
 
 select *

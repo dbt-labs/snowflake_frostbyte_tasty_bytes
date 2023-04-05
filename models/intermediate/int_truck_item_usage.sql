@@ -16,9 +16,9 @@ select eod_stock_assignment.assignment_id,
        eod_stock_assignment.expiration_date,
        eod_stock_assignment.created_date,
        item.item_id,
-       item.name,
+       item.item_name,
        item.unit_price,
-       item.category,
+       item.item_category,
        item.unit,
        item.shelf_life_days
   from eod_stock_assignment 

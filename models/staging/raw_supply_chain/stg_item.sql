@@ -8,8 +8,8 @@ with
     renamed as (
         select
             item_id as item_id,
-            name as name,
-            category as category,
+            name as item_name,
+            category as item_category,
             unit as unit,
             unit_price as unit_price,
             unit_currency as unit_currency,
