@@ -2,67 +2,87 @@ version: 2
 
 models:
   - name: int_daily_order_profit
-    description: abc
+    description: Sales, Cost of Goods Sold, and Calculated Profit for each Order
     columns:
-      - name: customer_id
-        description: tbd
+      - name: order_id
+        description: Unique Order Identifier from the Tasty Bytes Point of Sales system
+      - name: truck_id
+        description: Unique Tasty Bytes Truck Identifier
 
   - name: int_holiday
-    description: abc
+    description: Sourced from a CyberSyn Listing from the Snowflake Marketplace, this model includes hisotric and future holidays for the Countries and Cities Tasty Bytes Food Trucks operate within.
     columns:
-      - name: customer_id
-        description: tbd
+      - name: date
+        description: Holiday Date
 
   - name: int_orders
-    description: abc
+    description: All available Order metrics including Franchisee and Customer Loyalty data.
     columns:
+      - name: order_id
+        description: Unique Order Identifier from the Tasty Bytes Point of Sales system
       - name: customer_id
-        description: tbd
+        description: Unique Customer Identifier from the Tasty Bytes Customer Loyalty system
+      - name: truck_id
+        description: Unique Tasty Bytes Truck Identifier
 
   - name: int_truck_inbound
-    description: Truck Inbound Inventory Distribution
+    description: Truck Inbound Inventory Distribution Data from Tasty Bytes Warehouses
     columns:
-      - name: customer_id
-        description: tbd
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
   
   - name: int_truck_item_usage
-    description: Truck Item_ID Level Inventory Daily Usage
+    description: Truck Ingredient Level Inventory Daily Usage
     columns:
-      - name: customer_id
-        description: tbd
+      - name: assignment_id
+        description: Unique Identifier for Ingredient Level Inventory 
 
   - name: int_warehouse_inbound
-    description: Warehouse Inbound Purchase Order
+    description: Tasty Bytes Warehouse Inbound Purchase Order Data
     columns:
-      - name: customer_id
-        description: tbd
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
 
   - name: int_warehouse_items_dates
-    description: abc
+    description: Contains all possible Warehouse, Data and Item_ID Combinations
     columns:
-      - name: customer_id
-        description: tbd
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
 
   - name: int_warehouse_outbound
-    description: Warehouse Outbound Purchase Order
+    description: Tasty Bytes Warehouse Bulk Item Purchase Order to Food Truck Detail Distribution Data
     columns:
-      - name: customer_id
-        description: tbd
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
 
   - name: stg_distribution_summary
-    description: abc
+    description: Tasty Bytes Warehouse to Food Truck Distribution Summary Data
     columns:
-      - name: customer_id
-        description: tbd
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
 
   - name: stg_order_summary
-    description: abc
+    description: Summarized Point of Sales Order Data combining raw Order Header and Order Detail Data
     columns:
-      - name: customer_id
-        description: tbd
+      - name: order_id
+        description: Unique Order Identifier from the Tasty Bytes Point of Sales system
 
   - name: stg_purchase_order_summary
-    description: abc
+    description: Summarized Warehouse Supply Chain Purchase Order Data combining raw Purchase Order Header and Purchase Order Detail Data
     columns:
-      - name: customer_id
-        description: tbd
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
