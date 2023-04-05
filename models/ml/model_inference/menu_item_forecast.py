@@ -3,7 +3,7 @@ import snowflake.snowpark.functions as F
 
 def model(dbt, session):
 
-    df_future_dates = dbt.ref("get_sales_short_term_trends")
+    df_future_dates = dbt.ref("model_training")
 
     #this is to reference the UDF creation 
     demand_forecast_udf = dbt.ref("demand_forecast_train_metrics")
