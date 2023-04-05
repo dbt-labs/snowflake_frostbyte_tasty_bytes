@@ -19,13 +19,6 @@ def model(dbt, session):
     df_holidays = orders_df.select("date", "primary_city", "holiday_flag").distinct()
     df = df.join(df_holidays, ["date", "primary_city"])
 
-    # Drop ID columns
-    df = df.drop("date",
-            "primary_city",
-            "location_id",
-            #"truck_id",
-            "menu_type",
-            "menu_item_id",)
 
     # Encode
     df = df.with_column("shift", F.iff(F.col("shift") == "AM", 1, 0))
@@ -35,6 +28,13 @@ def model(dbt, session):
     df = df.with_column("split_type",
                         F.iff(F.col("date") <= (max_date - datetime.timedelta(days=30)),
                                 F.lit("train"),
-                                F.lit("test"))).drop("date")
+                                F.lit("test")))
+    
+    # Drop ID columns
+    df = df.drop("date",
+            "primary_city",
+            "location_id",
+            "menu_type",
+            "menu_item_id",)
 
     return df
