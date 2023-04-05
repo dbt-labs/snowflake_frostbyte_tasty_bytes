@@ -9,6 +9,8 @@ def model(dbt, session):
 
     train_df = dbt.ref("demand_forecast_train")
     test_df = dbt.ref("demand_forecast_test")
+    #this is to reference the UDF creation 
+    demand_forecast_udf = dbt.ref("model_training")
     feature_cols = train_df.drop("quantity").columns
 
     # Function to load the model from file and cache the result
