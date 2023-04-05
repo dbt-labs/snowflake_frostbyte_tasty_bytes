@@ -2,10 +2,20 @@ version: 2
 
 models:
   - name: feature_engineer_prepare_data
+    description: Cleansed table for model training. Includes third party features, such as holiday flag, latitude and longitude. Identification columns have been removed.
+     Categorical columns are represented as numeric. Data has been split into 80% training and 20% testing.
   - name: demand_forecast_test
+    description: Subset of the feature data (80%) to be used for model training.
   - name: demand_forecast_train
+    description: Subset of the feature data (20%) to be used for model testing.
   - name: demand_forecast_train_demo
+    description: Subset of the training data to be used for demonstration. The purpose of this subset is to show model training in around 30 seconds.
   - name: hyperparameter_tuning_df
+    description: Table containing combinations of XGBoost hyperparameters cross joined with training data to be used in hyperparameter tuning.
   - name: hyperparameter_tuning_results
+    description: The resulting performance (RMSE) of 27 XGBoost models trained in parrallel for each combination of hyperparameters .
   - name: model_training
+    description: The feature importance from a menu item demand by location forecast model after the model (XGBoost) is trained in a Snowflake stored procedure with the best selected hyperparameters.
+      The trained model is saved on a Snowflake stage.
   - name: demand_forecast_train_metrics
+    description: The evaluation metrics on the training and test datasets, following deployment of the model in a Snowflake as a user-defined function.

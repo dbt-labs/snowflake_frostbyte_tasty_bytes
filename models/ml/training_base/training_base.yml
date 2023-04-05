@@ -1,9 +1,23 @@
 version: 2
 
 models:
-  - name: aggregate_historical_features
-  - name: demand_forecast_training_base
-  - name: features_future_dates
-  - name: features_historical_target_dates
-  - name: features_sales_aggregate
-  - name: forecast_training_historical
+  - name: aggregate_historical_features # features_sales_aggregate_expanded
+    description: Expandsion of aggregate orders table with a row for each date, shift, location, and menu item. 
+      This table is used to create rolling features for the past 7, 14, and 28 days.
+
+  - name: demand_forecast_training_base 
+    description: The base demand forecast feature table with prediction day features and forecast execution day features joined.
+
+  - name: features_future_dates 
+    description: Aggregate orders with date features around the target forecast date.
+
+  - name: features_historical_target_dates # aggregate_target_features
+    description: Target prediction date feature table with day of week historical aggregate feature and sales features for the same month in the previous year.
+
+  - name: features_sales_aggregate 
+    description: Aggregate table of transactional orders data by date, shift, location, and menu item.
+
+  - name: forecast_training_historical # aggregate_historical_features
+    description: Forecast execution date rolling aggregate features to capture recent and overall trends by city, location, menu type and menut item. Recent trends are captured with averaging sales or 
+      item quantity for the past 7, 14, and 28 days. Overall trends are captured with rolling average sales or item quantity from the first day in our data. 
+      This table is used represent the features up to and including the forecast execution date.
