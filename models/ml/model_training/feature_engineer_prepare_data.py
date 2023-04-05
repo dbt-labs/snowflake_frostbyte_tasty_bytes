@@ -1,5 +1,6 @@
 import snowflake.snowpark.functions as F
-from snowflake.snowpark.functions import lit 
+from snowflake.snowpark.functions import lit
+import datetime
 
 def model(dbt, session):
 
