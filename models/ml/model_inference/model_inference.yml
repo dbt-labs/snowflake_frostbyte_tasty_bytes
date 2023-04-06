@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: menu_items_sales_aggregate # aggregate_target_features
+    description: Aggregate table with historical day of week sales performance and month of previous year performance.
+
+  - name: explode_sales_features # prediction_base
+    description: Dimensional table with future prediction dates (7) cross joined with shifts, locations, and menu items.
+
+  - name: get_sales_historical_trends # features_sales_aggregate
+    description: Aggregate table of transactional orders data by date, shift, location, and menu item with date features.
+
+  - name: get_sales_short_term_trends # aggregate_historical_features
+    description: Aggregate features of recent and overall sales and item quantity for the past 7, 14, 28 days and all time from the forecast execution date.
+
+  - name: menu_item_forecast
+    description: Menu item predictions for each location and shift for 7 days in the prediction week. The forecast execution day is on a Friday and the prediction week begins 9 days later.

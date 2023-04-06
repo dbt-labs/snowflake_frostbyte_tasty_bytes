@@ -4,7 +4,6 @@ def model(dbt, session):
 
     df_base = dbt.ref("features_sales_aggregate")   
    
-   
     # Add day of week 
     df = df_base.with_column("day_of_week", F.dayofweek(F.col("date")))
 
