@@ -17,9 +17,7 @@ def model(dbt, session):
         "shift",
         "primary_city",
         "location_id",
-        "latitude",
-        "longitude",
-        "truck_id",
+        #"truck_id",
         "menu_type",
         "menu_item_id",
         "month_of_year",
@@ -73,15 +71,23 @@ def model(dbt, session):
     ]
 
     df_training = df_future.join(
-    df_hist, 
-    (df_future.forecast_date == df_hist.date)
-    & (df_future.shift == df_hist.shift)
-    & (df_future.location_id == df_hist.location_id)
-    & (df_future.menu_item_id == df_hist.menu_item_id),
-    "left"
+        df_hist, 
+        (
+            (df_future.forecast_date == df_hist.date)
+            & (df_future.shift == df_hist.shift)
+            & (df_future.location_id == df_hist.location_id)
+            & (df_future.menu_item_id == df_hist.menu_item_id)
+        ),
+        "left"
     ).select(
-    [df_future.col(c).alias(c) for c in future_features + target]
-    + [df_hist.col(c).alias(c) for c in hist_features]
-    )
+        [df_future.col(c).alias(c) for c in future_features + target]
+        + [df_hist.col(c).alias(c) for c in hist_features]
+    ).cache_result()
+
+    # Get earliest date to include in the data
+    min_date = df_training.select(F.dateadd("year", F.lit(1), F.min("date"))).collect()[0][0]
+
+    # Filter out the first year in the data
+    df_training = df_training.filter(F.col("date") >= min_date)
 
     return df_training
