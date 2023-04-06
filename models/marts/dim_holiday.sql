@@ -1,6 +1,6 @@
 with tasty_holidays as (
 
-    select * from {{ ref('hmz_holiday_v') }}
+    select * from {{ ref('int_holiday') }}
 
 )
 select 
