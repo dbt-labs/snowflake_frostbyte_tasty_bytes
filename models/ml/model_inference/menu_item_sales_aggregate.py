@@ -3,7 +3,7 @@ import snowflake.snowpark.functions as F
 
 def model(dbt, session):
 
-    orders_df = dbt.ref("orders_v")
+    orders_df = dbt.ref("fct_orders")
 
     # Define features
     order_features = [

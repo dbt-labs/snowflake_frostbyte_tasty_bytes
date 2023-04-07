@@ -13,5 +13,13 @@ with date_spine as (
 }}  
 )
 
-select date_day as date
-   from date_spine
+select date_day as date,
+       year(date_day) as year,
+       month(date_day) as month,
+       monthname(date_day) as month_name,
+       dayofmonth(date_day) as day_of_mon,
+       dayofweek(date_day) as day_of_week,
+       weekofyear(date_day) as week_of_year,
+       dayofyear(date_day) as day_of_year
+
+  from date_spine

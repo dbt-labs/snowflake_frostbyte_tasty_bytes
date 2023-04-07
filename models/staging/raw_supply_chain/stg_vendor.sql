@@ -7,8 +7,8 @@ with
 
     renamed as (
         select vendor_id as vendor_id, 
-               name as name, 
-               category as category 
+               name as vendor_name, 
+               category as vendor_category 
           from source
     )
     

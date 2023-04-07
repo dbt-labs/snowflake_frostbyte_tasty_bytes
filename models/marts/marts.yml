@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: dim_safegraph_poi
+    description: Sourced from a SafeGraph Snowflake Marketplace Listing, this model contains Point of Interest metrics for the locations Tasty Bytes Food Trucks serve.
+    columns:
+      - name: location_id
+        description: Unique Tasty Bytes Location Identifier
+      - name: placekey
+        description: Placekey is a free, universal standard identifier for any physical place
+      - name: latitude
+        description: The angular distance of a place north or south of the earth's equator
+      - name: longitude
+        description: The angular distance of a place east or west of the meridian at Greenwich, England
+
+  - name: fct_daily_order_profit
+    description: Sales, Cost of Goods Sold, and Calculated Profit for each Order
+    columns:
+      - name: order_id
+        description: Unique Order Identifier from the Tasty Bytes Point of Sales system
+      - name: truck_id
+        description: Unique Tasty Bytes Truck Identifier
+
+  - name: fct_item_wastage
+    description: Tasty Bytes Truck Item_ID Level Waste Data
+    columns:
+      - name: truck_id
+        description: Unique Tasty Bytes Truck Identifier
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
+
+  - name: fct_orders
+    description: Tasty Bytes Food Truck Order Data including metrics from Point of Sales, Customer Loyalty, SafeGraph and Cybersyn Sources.
+    columns:
+      - name: order_id
+        description: Unique Order Identifier from the Tasty Bytes Point of Sales system
+      - name: customer_id
+        description: Unique Customer Identifier from the Tasty Bytes Customer Loyalty system
+      - name: truck_id
+        description: Unique Tasty Bytes Truck Identifier
+      - name: holiday_flag
+        description: Boolean flag for Holiday occuring in the Orders Country/City on Order Date
+      - name: latitude
+        description: The angular distance of a place north or south of the earth's equator
+      - name: longitude
+        description: The angular distance of a place east or west of the meridian at Greenwich, England
+  
+  - name: fct_truck_inventory
+    description: Tasty Bytes Truck Inbound and Outbound Item_ID Level Inventory History
+    columns:
+      - name: truck_id
+        description: Unique Tasty Bytes Truck Identifier
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
+      - name: status
+        description: IN or OUT indicator of direction of the Item_ID within the Trucks Inventory
+
+  - name: fct_warehouse_inventory
+    description: Tasty Bytes Warehouse Item_ID Level Inventory History
+    columns:
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
+
+  - name: fct_holiday
+    description: Holiday Data Sourced from CybernSyn for Tasty Bytes served Countries and Cities
+    columns:
+      - name: date
+        description: Holiday Date

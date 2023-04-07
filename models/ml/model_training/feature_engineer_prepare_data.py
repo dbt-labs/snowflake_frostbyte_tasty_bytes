@@ -5,7 +5,7 @@ import datetime
 def model(dbt, session):
 
     df = dbt.ref("demand_forecast_training_base")
-    orders_df = dbt.ref("orders_v")
+    orders_df = dbt.ref("fct_orders")
 
     # Get earliest date
     min_date = df.select(F.dateadd("year", F.lit(1), F.min("date"))).collect()[0][0]

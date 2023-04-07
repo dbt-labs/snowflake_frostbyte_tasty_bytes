@@ -9,8 +9,8 @@ with
         select
 
             franchise_id as franchise_id,
-            first_name as first_name,
-            last_name as last_name,
+            first_name as franchisee_first_name,
+            last_name as franchisee_last_name,
             city as city,
             country as country,
             e_mail as e_mail,
