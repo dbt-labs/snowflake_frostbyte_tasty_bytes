@@ -1,11 +1,11 @@
 with purchase_order_header as (
 
-    select * from {{ ref('stg_purchase_order_header') }}
+    select * from {{ ref('base_purchase_order_header') }}
 
 ),
 purchase_order_detail as (
 
-    select * from {{ ref('stg_purchase_order_detail') }}
+    select * from {{ ref('base_purchase_order_detail') }}
     
 ),
 

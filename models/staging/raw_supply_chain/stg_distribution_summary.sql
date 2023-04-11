@@ -1,11 +1,11 @@
 with distribution_header as (
 
-    select * from {{ ref('stg_distribution_header') }}
+    select * from {{ ref('base_distribution_header') }}
 
 ),
 distribution_detail as (
 
-    select * from {{ ref('stg_distribution_detail') }}
+    select * from {{ ref('base_distribution_detail') }}
     
 ),
 

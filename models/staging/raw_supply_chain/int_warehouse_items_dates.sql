@@ -16,7 +16,7 @@ vendor as (
 ),
 dates as (
 
-    select * from {{ ref('stg_dim_date') }}
+    select * from {{ ref('all_days') }}
 
 ),
 
@@ -68,7 +68,7 @@ all_warehouses_all_items_all_dates as
            awai.image_url,
            awai.vendor_id,
            awai.vendor_name
-      from {{ ref('stg_dim_date') }} dim_date
+      from {{ ref('all_days') }} dim_date
       join all_warehouses_all_items awai
      where dim_date.date >= '10/14/2022'
        and dim_date.date <= CURRENT_DATE()

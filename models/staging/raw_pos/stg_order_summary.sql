@@ -1,21 +1,21 @@
 with order_detail as (
 
-    select * from {{ ref('stg_order_detail') }}
+    select * from {{ ref('base_order_detail') }}
 
 ),
 order_header as (
 
-    select * from {{ ref('stg_order_header') }}
+    select * from {{ ref('base_order_header') }}
     
 ),
 truck as (
 
-    select * from {{ ref('stg_truck') }}
+    select * from {{ ref('base_truck') }}
 
 ), 
 menu as (
 
-    select * from {{ ref('stg_menu') }}
+    select * from {{ ref('base_menu') }}
 
 ),
 
