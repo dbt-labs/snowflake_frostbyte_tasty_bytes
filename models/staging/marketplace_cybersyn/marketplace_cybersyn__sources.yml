@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: raw_marketplace_cybersyn
+  - name: marketplace_cybersyn
     database: frostbyte_cs_public
     schema: cybersyn
     tables:

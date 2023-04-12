@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: raw_pos
+  - name: pos
     database: frostbyte_tasty_bytes  
     schema: raw_pos  
     tables:

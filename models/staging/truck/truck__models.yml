@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_dim_shift
-    description: staging for dim_shift table
+  - name: stg_truck__dim_shift
+    description: staging model for dim_shift data
     columns:
       - name: shift_id
         description: pirmary key for the dim_shift model
@@ -17,8 +17,9 @@ models:
         description: ending time of the shift in 24 hrs format
       - name: pm_shift_id
         description: shift id for the PM shifts
-  - name: stg_inventory_queue
-    description: staging for inventory_queue table
+
+  - name: stg_truck__inventory_queue
+    description: staging model for inventory_queue data
     tests:
           - unique:
              column_name: "(truck_id || '-' || item_id || '-' || warehouse_id)"
@@ -45,8 +46,9 @@ models:
         description: updated date in the format yyyy-mm-dd
       - name: is_processed
         description: status of the inventory queue item as TRUE OR FALSE
-  - name: stg_truck_shift
-    description: staging for truck_shift table
+
+  - name: stg_truck__truck_shift
+    description: staging model for truck_shift data
     tests:
           - unique:
              column_name: "(truck_id || '-' || shift_id || '-' || location_id)"

@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_safegraph
+  - name: stg_safegraph__safegraph
     description: staging for SafeGraph Marketplace table
     columns:
       - name: placekey

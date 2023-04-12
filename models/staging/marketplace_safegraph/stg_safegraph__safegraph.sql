@@ -2,7 +2,7 @@
 with
     source as (
         select *
-          from {{ source("raw_marketplace_safegraph", "frostbyte_tb_safegraph_s") }}
+          from {{ source("marketplace_safegraph", "frostbyte_tb_safegraph_s") }}
     ),
     
     renamed as (

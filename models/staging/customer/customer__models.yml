@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_customer_loyalty
+  - name: stg_customer__loyalty
     description: staging for Customer Loyalty table
     columns:
       - name: customer_id

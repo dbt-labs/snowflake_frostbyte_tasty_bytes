@@ -2,7 +2,7 @@
 with
     source as (
         select *
-          from {{ source("raw_pos", "order_detail") }}
+          from {{ source("pos", "order_detail") }}
     ),
 
     renamed as (

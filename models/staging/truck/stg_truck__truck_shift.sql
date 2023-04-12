@@ -2,7 +2,7 @@
 with
     source as (
         select *
-        from {{ source("raw_truck", "truck_shift") }}
+        from {{ source("truck", "truck_shift") }}
     ),
 
     renamed as (

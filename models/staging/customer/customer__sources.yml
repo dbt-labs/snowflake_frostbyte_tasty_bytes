@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: raw_customer
+  - name: customer
     database: frostbyte_tasty_bytes  
     schema: raw_customer
     tables:

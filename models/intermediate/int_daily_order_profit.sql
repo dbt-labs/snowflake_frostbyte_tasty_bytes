@@ -11,7 +11,7 @@ select order_ts,
        sum(cost_of_goods_usd) as cogs_usd,
        sales_usd - cogs_usd as gross_profit_usd,
        round(((((sales_usd - cogs_usd) / sales_usd)) * 100), 2) as sales_margin_pct
-  from {{ ref("stg_order_summary") }}
+  from {{ ref("stg_pos__order_summary") }}
 
 {% if is_incremental() %}
 

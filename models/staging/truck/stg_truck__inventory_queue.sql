@@ -2,7 +2,7 @@
 with
     source as (
         select *
-        from {{ source("raw_truck", "inventory_queue") }}
+        from {{ source("truck", "inventory_queue") }}
     ),
 
     renamed as (

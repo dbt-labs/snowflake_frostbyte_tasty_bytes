@@ -1,13 +1,13 @@
 
 with cybersyn_holiday as (
 
-    select * from {{ ref('stg_cybersyn_holiday') }}
+    select * from {{ ref('stg_cybersyn__holidays') }}
 
 ),
 
 countries as (
 
-    select * from {{ ref('stg_country') }}
+    select * from {{ ref('stg_pos__countries') }}
 ),
 
 final as (

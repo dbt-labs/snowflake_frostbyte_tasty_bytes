@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: raw_truck
+  - name: truck
     database: frostbyte_tasty_bytes  
     schema: raw_truck
     tables:
