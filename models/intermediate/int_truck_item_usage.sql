@@ -1,11 +1,11 @@
 with eod_stock_assignment as (
 
-    select * from {{ ref('stg_eod_stock_assignment') }}
+    select * from {{ ref('stg_supply_chain__eod_stock_assignments') }}
 
 ),
 item as (
 
-    select * from {{ ref('stg_item') }}
+    select * from {{ ref('stg_supply_chain__items') }}
 
 )
 

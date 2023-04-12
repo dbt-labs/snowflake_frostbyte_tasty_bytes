@@ -15,7 +15,7 @@ select warehouse_id,
        quantity,
        expiration_date,
        po_id
-from {{ ref('stg_distribution_summary') }}
+from {{ ref('stg_supply_chain__distribution_summary') }}
 )
 select awaiad.date,
        awaiad.warehouse_id,

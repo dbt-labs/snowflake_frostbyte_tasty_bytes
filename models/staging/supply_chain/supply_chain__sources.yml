@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: raw_supply_chain
+  - name: supply_chain
     database: frostbyte_tasty_bytes  
     schema: raw_supply_chain
     tables:

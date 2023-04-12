@@ -1,17 +1,17 @@
 
 with warehouse as (
 
-    select * from {{ ref('stg_warehouse') }}
+    select * from {{ ref('stg_supply_chain__warehouses') }}
 
 ),
 item as (
 
-    select * from {{ ref('stg_item') }}
+    select * from {{ ref('stg_supply_chain__items') }}
 
 ),
 vendor as (
 
-    select * from {{ ref('stg_vendor') }}
+    select * from {{ ref('stg_supply_chain__vendors') }}
 
 ),
 dates as (

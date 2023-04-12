@@ -1,11 +1,11 @@
 with distribution_summary as (
 
-    select * from {{ ref('stg_distribution_summary') }}
+    select * from {{ ref('stg_supply_chain__distribution_summary') }}
 
 ),
 item as (
 
-    select * from {{ ref('stg_item') }}
+    select * from {{ ref('stg_supply_chain__items') }}
 
 ),
 final as(

@@ -20,7 +20,7 @@ select
     purchase_order_summary.quantity,
     purchase_order_summary.manufacturing_date,
     purchase_order_summary.expiration_date
-from {{ ref('stg_purchase_order_summary') }} purchase_order_summary
+from {{ ref('stg_supply_chain__purchase_order_summary') }} purchase_order_summary
 
 )
 select awaiad.date,

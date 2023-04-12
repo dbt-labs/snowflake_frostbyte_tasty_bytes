@@ -194,3 +194,9 @@ models:
         description: foreign key for the franchise model
       - name: truck_opening_date
         description: opening date for the truck in yyyy-mm-dd format
+
+  - name: stg_pos__order_summary
+    description: Summarized Point of Sales Order Data combining raw Order Header and Order Detail Data
+    columns:
+      - name: order_id
+        description: Unique Order Identifier from the Tasty Bytes Point of Sales system

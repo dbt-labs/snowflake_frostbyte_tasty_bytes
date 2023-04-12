@@ -60,29 +60,3 @@ models:
         description: Unique Identifier for Tasty Bytes Warehouses
       - name: item_id
         description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
-
-  - name: stg_distribution_summary
-    description: Tasty Bytes Warehouse to Food Truck Distribution Summary Data
-    columns:
-      - name: po_id
-        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
-      - name: warehouse_id
-        description: Unique Identifier for Tasty Bytes Warehouses
-      - name: item_id
-        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
-
-  - name: stg_order_summary
-    description: Summarized Point of Sales Order Data combining raw Order Header and Order Detail Data
-    columns:
-      - name: order_id
-        description: Unique Order Identifier from the Tasty Bytes Point of Sales system
-
-  - name: stg_purchase_order_summary
-    description: Summarized Warehouse Supply Chain Purchase Order Data combining raw Purchase Order Header and Purchase Order Detail Data
-    columns:
-      - name: po_id
-        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
-      - name: warehouse_id
-        description: Unique Identifier for Tasty Bytes Warehouses
-      - name: item_id
-        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items

@@ -1,8 +1,9 @@
 version: 2
 
 models:
-  - name: stg_distribution_detail
-    description: staging for distribution_detail table
+
+  - name: base_supply_chain__distribution_details
+    description: base model for distribution_detail data
     columns:
       - name: dh_detail_id
         description: primary key for the distribution_detail model
@@ -25,8 +26,9 @@ models:
         description: created date in datetime format
       - name: updated_date
         description: updated date in datetime format
-  - name: stg_distribution_header
-    description: staging for distribution_header table
+
+  - name: base_supply_chain__distribution_headers
+    description: base model for distribution_header data
     columns:
       - name: dh_id
         description: primary key for the distribution_header model
@@ -43,8 +45,9 @@ models:
         description: created date in datetime format
       - name: updated_date
         description: updated date in datetime format
-  - name: stg_item
-    description: staging for item table
+        
+  - name: stg_supply_chain__items
+    description: staging model for item data
     columns:
       - name: item_id
         description: primary key for the item model
@@ -67,8 +70,9 @@ models:
         description: foreign key for the vendor model
       - name: image_url
         description: url for the image of the item
-  - name: stg_purchase_order_detail
-    description: staging for purchase_order_detail table
+
+  - name: base_supply_chain__purchase_order_details
+    description: staging model for purchase_order_detail data
     columns:
       - name: po_detail_id
         description: primary key for the purchase_order_detail model
@@ -97,8 +101,9 @@ models:
         description: created date of the item in datetime format
       - name: updated_date
         description: updated date of the item in datetime format
-  - name: stg_purchase_order_header
-    description: staging for purchase_order_header table
+
+  - name: base_supply_chain__purchase_order_headers
+    description: base model for purchase_order_header data
     columns:
       - name: po_id
         description: primary key for the purchase_order_header model
@@ -129,8 +134,9 @@ models:
         description: created date in datetime format
       - name: updated_date
         description: updated date in datetime format
-  - name: stg_recipe
-    description: staging for recipe table
+
+  - name: stg_supply_chain__recipes
+    description: staging model for recipe data
     columns:
       - name: recipe_id
         description: primary key for the recipe model
@@ -145,8 +151,9 @@ models:
         description: foreign key for the item model
       - name: unit_quantity
         description: unit quantity
-  - name: stg_vendor
-    description: staging for vendor table
+
+  - name: stg_supply_chain__vendors
+    description: staging model for vendor data
     columns:
       - name: vendor_id
         description: primary key for the vendor model
@@ -157,7 +164,8 @@ models:
         description: name of the vendor
       - name: category
         description: item category for the vendor
-  - name: stg_warehouse
+
+  - name: stg_supply_chain__warehouses
     description: staging for warehouse table
     columns:
       - name: warehouse_id
@@ -177,3 +185,23 @@ models:
         description: lattitude of the warehouse
       - name: longitude
         description: longitude of the warehouse
+
+  - name: stg_supply_chain__distribution_summary
+    description: Tasty Bytes Warehouse to Food Truck Distribution Summary Data
+    columns:
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
+
+  - name: stg_supply_chain__purchase_order_summary
+    description: Summarized Warehouse Supply Chain Purchase Order Data combining raw Purchase Order Header and Purchase Order Detail Data
+    columns:
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
