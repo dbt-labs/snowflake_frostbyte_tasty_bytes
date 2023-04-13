@@ -1,39 +1,11 @@
 with in_out_detail as
 (   
-    select distribution_date as date,
-           truck_id,
-           item_id,
-           item_name,
-           unit_price,
-           unit,
-           item_category,
-           shelf_life_days,
-           po_id,
-           quantity,
-           expiration_date,
-           'IN' as status
-      from {{ ref('int_truck_inbound') }}
-     where po_id is not null
-
-    union
-
-    select created_date as date,
-           truck_id,
-           item_id,
-           item_name,
-           unit_price,
-           unit,
-           item_category,
-           shelf_life_days,
-           po_id,
-           (quantity * -1) as quantity,
-           expiration_date,
-           'OUT' as status
-from {{ ref('int_truck_item_usage') }} 
+    select *
+      from {{ ref('int_truck_inbound_item_usage') }}
 
 )
 
-    select date,
+    select created_date,
            truck_id,
            item_id,
            item_name,
@@ -55,7 +27,7 @@ from {{ ref('int_truck_item_usage') }}
                 else null
             end as cost_of_inventory
       from in_out_detail
-     group by date, 
+     group by created_date, 
               truck_id, 
               item_id, 
               item_name, 
@@ -65,4 +37,4 @@ from {{ ref('int_truck_item_usage') }}
               shelf_life_days, 
               po_id, 
               expiration_date
-    having (quantity_remaining > 0 and date < expiration_date)
+    having (quantity_remaining > 0 and created_date < expiration_date)
