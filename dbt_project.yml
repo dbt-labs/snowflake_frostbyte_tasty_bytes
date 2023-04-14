@@ -30,23 +30,22 @@ vars:
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-# In this example config, we tell dbt to build all models in the example/ directory
-# as tables. These settings can be overridden in the individual model files
-# using the `{{ config(...) }}` macro.
 models:
   tasty_bytes:
-    # Applies to all files under models/example/
+
     +persist_docs:
       relation: true
       columns: true
+
     staging:
-      materialized: view
-      raw_pos:
-        +schema: stg_pos
-      raw_truck:
-        +schema: stg_truck
-      raw_supply_chain:
-        +schema: stg_supply_chain
+      +schema: harmonized
+
+    interemdiate:
+      +schema: harmonized
+
+    marts:
+      +schema: analytics
+
     ml:
       materialized: table
       +pre_hook: ["USE WAREHOUSE TASTY_DS_WH", "ALTER WAREHOUSE TASTY_DS_WH SET WAREHOUSE_SIZE=XXLARGE"]
