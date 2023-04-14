@@ -1,12 +1,12 @@
 
 with safegraph as (
 
-    select * from {{ ref('stg_safegraph') }}
+    select * from {{ ref('stg_safegraph__safegraph') }}
 
 ),
 location as (
 
-    select * from {{ ref('stg_location') }}
+    select * from {{ ref('stg_pos__locations') }}
 ),
 final as (
     select location.location_id,

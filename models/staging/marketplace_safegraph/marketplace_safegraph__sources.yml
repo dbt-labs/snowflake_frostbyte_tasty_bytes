@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: marketplace_safegraph
+    database: frostbyte_safegraph
+    schema: public
+    tables:
+      - name: frostbyte_tb_safegraph_s

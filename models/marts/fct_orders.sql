@@ -7,7 +7,7 @@
 
 with holiday as (
 
-    select * from {{ ref('int_holiday') }}
+    select * from {{ ref('dim_holidays') }}
 
 ),
 orders as (

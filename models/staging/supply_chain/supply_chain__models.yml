@@ -1,0 +1,207 @@
+version: 2
+
+models:
+
+  - name: base_supply_chain__distribution_details
+    description: base model for distribution_detail data
+    columns:
+      - name: dh_detail_id
+        description: primary key for the distribution_detail model
+        tests:
+          - unique
+          - not_null
+      - name: dh_id
+        description: foreign key for the distribution header model
+      - name: line_item_id
+        description: line item id
+      - name: item_id
+        description: item id
+      - name: quantity
+        description: quantity of goods
+      - name: expiration_date
+        description: expiration date in the format yyyy-mm-dd
+      - name: po_id
+        description: foreign key for the purchase order model
+      - name: created_date
+        description: created date in datetime format
+      - name: updated_date
+        description: updated date in datetime format
+
+  - name: base_supply_chain__distribution_headers
+    description: base model for distribution_header data
+    columns:
+      - name: dh_id
+        description: primary key for the distribution_header model
+        tests:
+          - unique
+          - not_null
+      - name: truck_id
+        description: foreign key for the truck model
+      - name: warehouse_id
+        description: warehouse id
+      - name: distribution_date
+        description: distribution date in yyyy-mm-dd format
+      - name: created_date
+        description: created date in datetime format
+      - name: updated_date
+        description: updated date in datetime format
+        
+  - name: stg_supply_chain__items
+    description: staging model for item data
+    columns:
+      - name: item_id
+        description: primary key for the item model
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: name of the item
+      - name: category
+        description: category of the item
+      - name: unit
+        description: weight/count description of the item
+      - name: unit_price
+        description: price of the unit
+      - name: unit_currency
+        description: currency code for the price
+      - name: shelf_life_days
+        description: shelf life days for the item
+      - name: vendor_id
+        description: foreign key for the vendor model
+      - name: image_url
+        description: url for the image of the item
+
+  - name: base_supply_chain__purchase_order_details
+    description: staging model for purchase_order_detail data
+    columns:
+      - name: po_detail_id
+        description: primary key for the purchase_order_detail model
+        tests:
+          - unique
+          - not_null
+      - name: po_id
+        description: foreign key for the purchase_order_header model
+      - name: warehouse_id
+        description: foreign key for the warehouse model
+      - name: vendor_id
+        description: foreign key for the vendor model
+      - name: item_id
+        description: foreign key for the item model
+      - name: line_item_id
+        description: line item id
+      - name: quantity
+        description: quantity of the item
+      - name: manufacturing_date
+        description: manufacturing date of the item in yyyy-mm-dd format
+      - name: expiration_date
+        description: expiration date of the item in yyyy-mm-dd format
+      - name: unit_price
+        description: price of each item
+      - name: created_date
+        description: created date of the item in datetime format
+      - name: updated_date
+        description: updated date of the item in datetime format
+
+  - name: base_supply_chain__purchase_order_headers
+    description: base model for purchase_order_header data
+    columns:
+      - name: po_id
+        description: primary key for the purchase_order_header model
+        tests:
+          - unique
+          - not_null
+      - name: vendor_id
+        description: foreign key for the vendor model
+      - name: shipment_id
+        description: unique shipment id for the order
+      - name: po_date
+        description: purchase order date in yyyy-mm-dd format
+      - name: po_total
+        description: total cost of the purchase order
+      - name: warehouse_id
+        description: foreign key for the warehouse model
+      - name: shipment_date
+        description: shipment date in yyyy-mm-dd format
+      - name: tracking_id
+        description: tracking id for the purchase order
+      - name: expected_date
+        description: expected date in yyyy-mm-dd format
+      - name: delivery_date
+        description: delivery date in yyyy-mm-dd format
+      - name: po_status
+        description: status of purchase order
+      - name: created_date
+        description: created date in datetime format
+      - name: updated_date
+        description: updated date in datetime format
+
+  - name: stg_supply_chain__recipes
+    description: staging model for recipe data
+    columns:
+      - name: recipe_id
+        description: primary key for the recipe model
+        tests:
+          - unique
+          - not_null
+      - name: menu_item_id
+        description: menu item id
+      - name: menu_item_line_item
+        description: menu item and line item id
+      - name: item_id
+        description: foreign key for the item model
+      - name: unit_quantity
+        description: unit quantity
+
+  - name: stg_supply_chain__vendors
+    description: staging model for vendor data
+    columns:
+      - name: vendor_id
+        description: primary key for the vendor model
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: name of the vendor
+      - name: category
+        description: item category for the vendor
+
+  - name: stg_supply_chain__warehouses
+    description: staging for warehouse table
+    columns:
+      - name: warehouse_id
+        description: primary key for the warehouse model
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: name of the warehouse 
+      - name: city
+        description: city of the warehouse
+      - name: country
+        description: country of the warehouse
+      - name: address
+        description: address of the warehouse
+      - name: latitude
+        description: lattitude of the warehouse
+      - name: longitude
+        description: longitude of the warehouse
+
+  - name: stg_supply_chain__distribution_summary
+    description: Tasty Bytes Warehouse to Food Truck Distribution Summary Data
+    columns:
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
+
+  - name: stg_supply_chain__purchase_order_summary
+    description: Summarized Warehouse Supply Chain Purchase Order Data combining raw Purchase Order Header and Purchase Order Detail Data
+    columns:
+      - name: po_id
+        description: Unique Purchase Order Identifier from Tasty Bytes Warehouses
+      - name: warehouse_id
+        description: Unique Identifier for Tasty Bytes Warehouses
+      - name: item_id
+        description: Unique Identifier for Tasty Bytes Bulk Ingredient Items

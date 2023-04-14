@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: pos
+    database: frostbyte_tasty_bytes  
+    schema: raw_pos  
+    tables:
+      - name: menu
+      - name: truck
+      - name: location
+      - name: franchise
+      - name: country
+      - name: order_detail
+      - name: order_header
