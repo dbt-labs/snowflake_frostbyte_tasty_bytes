@@ -7,7 +7,7 @@ select order_ts,
        franchise_flag,
        primary_city as city,
        country,
-       sum(order_total) as sales_usd,
+       sum(price) as sales_usd,
        sum(cost_of_goods_usd) as cogs_usd,
        sales_usd - cogs_usd as gross_profit_usd,
        round(((((sales_usd - cogs_usd) / sales_usd)) * 100), 2) as sales_margin_pct

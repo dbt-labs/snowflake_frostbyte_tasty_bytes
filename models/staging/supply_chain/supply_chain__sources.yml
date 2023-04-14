@@ -11,6 +11,5 @@ sources:
       - name: item
       - name: purchase_order_detail
       - name: purchase_order_header
-      - name: recipe
       - name: vendor
       - name: warehouse

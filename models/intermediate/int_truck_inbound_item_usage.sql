@@ -29,7 +29,7 @@ inbound as (
            item.unit_price,
            item.item_category,
            item.shelf_life_days,
-           'IN' as direction
+           'IN' as status
       from distribution_summary
       join item
         on item.item_id = distribution_summary.item_id
@@ -49,7 +49,7 @@ item_usage as (
            item.unit_price,
            item.item_category,
            item.shelf_life_days,
-           'OUT' as direction
+           'OUT' as status
   from eod_stock_assignment 
   join item
     on eod_stock_assignment.item_id = item.item_id
@@ -67,7 +67,7 @@ select dateadd('day', - 1, distribution_date) as created_date,
        unit_price,
        item_category,
        shelf_life_days,
-       direction
+       status
   from inbound
 
   union all
@@ -83,5 +83,5 @@ select created_date,
        unit_price,
        item_category,
        shelf_life_days,
-       direction
+       status
   from item_usage
