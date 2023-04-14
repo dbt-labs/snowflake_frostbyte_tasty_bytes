@@ -38,7 +38,39 @@ models:
       - name: day_of_week_avg_city
       - name: day_of_week_avg_location
       - name: day_of_week_avg_city_menu_item
-      - name: day_of_week_avg_city_menu_type    
+      - name: day_of_week_avg_city_menu_type
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item      
 
   - name: features_future_dates 
     description: Aggregate orders with date features around the target forecast date.
@@ -82,39 +114,7 @@ models:
       - name: day_of_week_avg_city
       - name: day_of_week_avg_location
       - name: day_of_week_avg_city_menu_item
-      - name: day_of_week_avg_city_menu_type
-      - name: avg_sales_7d_location
-      - name: avg_sales_14d_location
-      - name: avg_sales_28d_location
-      - name: avg_sales_location
-      - name: avg_sales_7d_location_menu_type
-      - name: avg_sales_14d_location_menu_type
-      - name: avg_sales_28d_location_menu_type
-      - name: avg_sales_location_menu_type
-      - name: avg_quantity_7d_location_menu_item
-      - name: avg_quantity_14d_location_menu_item
-      - name: avg_quantity_28d_location_menu_item
-      - name: avg_quantity_location_menu_item
-      - name: avg_sales_7d_city
-      - name: avg_sales_14d_city
-      - name: avg_sales_28d_city
-      - name: avg_sales_city
-      - name: avg_sales_7d_city_menu_type
-      - name: avg_sales_14d_city_menu_type
-      - name: avg_sales_28d_city_menu_type
-      - name: avg_sales_city_menu_type
-      - name: avg_quantity_7d_city_menu_item
-      - name: avg_quantity_14d_city_menu_item
-      - name: avg_quantity_28d_city_menu_item
-      - name: avg_quantity_city_menu_item
-      - name: avg_sales_7d_menu_type
-      - name: avg_sales_14d_menu_type
-      - name: avg_sales_28d_menu_type
-      - name: avg_sales_menu_type
-      - name: avg_quantity_7d_menu_item
-      - name: avg_quantity_14d_menu_item
-      - name: avg_quantity_28d_menu_item
-      - name: avg_quantity_menu_item       
+      - name: day_of_week_avg_city_menu_type     
 
 
   - name: features_sales_aggregate 
