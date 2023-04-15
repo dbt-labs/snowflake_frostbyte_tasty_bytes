@@ -32,22 +32,18 @@ vars:
 
 models:
   tasty_bytes:
-
     +persist_docs:
       relation: true
       columns: true
-
     staging:
       +schema: harmonized
-
-    interemdiate:
+    intermediate:
       +schema: harmonized
-
     marts:
       +schema: analytics
-
     ml:
       materialized: table
+      +schema: ml
       +snowflake_warehouse: "TASTY_SNOWPARK_WH"
       +pre_hook: ["ALTER WAREHOUSE TASTY_DS_WH SET WAREHOUSE_SIZE=X5LARGE"]
       model_training:
