@@ -4,18 +4,276 @@ models:
   - name: feature_engineer_prepare_data
     description: Cleansed table for model training. Includes third party features, such as holiday flag, latitude and longitude. Identification columns have been removed.
      Categorical columns are represented as numeric. Data has been split into training and testing (30 day holdout).
+    columns:   
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item
+      - name: holiday_flag
+        description: Brought in from third-party data provider Cybersyn. Indicates if forecast date is a holiday.
+      - name: latitude
+        description: Brought in from third-party data provider Safegraph.
+      - name: longitude
+        description: Brought in from third-party data provider Safegraph.
+      - name: split_type
+        description: Used to indicate if a row will be used as training or testing.
+
   - name: demand_forecast_test
     description: Subset of the feature data (80%) to be used for model training.
+    columns:   
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item
+      - name: holiday_flag
+        description: Brought in from third-party data provider Cybersyn. Indicates if forecast date is a holiday.
+      - name: latitude
+        description: Brought in from third-party data provider Safegraph.
+      - name: longitude
+        description: Brought in from third-party data provider Safegraph.   
+
   - name: demand_forecast_train
     description: Subset of the feature data (20%) to be used for model testing.
+    columns:   
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item
+      - name: holiday_flag
+        description: Brought in from third-party data provider Cybersyn. Indicates if forecast date is a holiday.
+      - name: latitude
+        description: Brought in from third-party data provider Safegraph.
+      - name: longitude
+        description: Brought in from third-party data provider Safegraph.
+
   - name: demand_forecast_train_demo
     description: Subset of the training data to be used for demonstration. The purpose of this subset is to show model training in around 30 seconds.
+    columns:   
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item
+      - name: holiday_flag
+        description: Brought in from third-party data provider Cybersyn. Indicates if forecast date is a holiday.
+      - name: latitude
+        description: Brought in from third-party data provider Safegraph.
+      - name: longitude
+        description: Brought in from third-party data provider Safegraph.
+
   - name: hyperparameter_tuning_df
     description: Table containing combinations of XGBoost hyperparameters cross joined with training data to be used in hyperparameter tuning.
+    columns:
+      - name: max_depth
+        description: Xgboost hyperparameter
+      - name: learning_rate
+        description: Xgboost hyperparameter
+      - name: n_estimators
+        description: Xgboost hyperparameter
+      - name: feature_vector
+        description: Array of training features
+
   - name: hyperparameter_tuning_results
-    description: The resulting performance (RMSE) of 27 XGBoost models trained in parrallel for each combination of hyperparameters .
+    description: The resulting performance (RMSE) of 27 XGBoost models trained in parrallel for each combination of hyperparameters.
+    columns:
+      - name: max_depth
+        description: Xgboost hyperparameter
+      - name: learning_rate
+        description: Xgboost hyperparameter
+      - name: n_estimators
+        description: Xgboost hyperparameter
+      - name: RMSE
+        description: Root-mean-squared-error measure of model performance
+      - name: hp_id
+        description: Hyperparameter combination ID
+
   - name: model_training
     description: The feature importance from a menu item demand by location forecast model after the model (XGBoost) is trained in a Snowflake stored procedure with the best selected hyperparameters.
       The trained model is saved on a Snowflake stage.
+
   - name: demand_forecast_train_metrics
     description: The evaluation metrics on the training and test datasets, following deployment of the model in a Snowflake as a user-defined function.
+    columns:
+      - name: model_name
+        description: Name of the saved model file on Snowflake
+      - name: train_ts
+        description: Timestamp of when training was evaluated
+      - name: rmse_train
+        description: Root-mean-squared-error measure of model performance on training data
+      - name: rmse_test
+        description: Root-mean-squared-error measure of model performance on test data

@@ -1,23 +1,181 @@
 version: 2
 
 models:
-  - name: aggregate_historical_features # features_sales_aggregate_expanded
+  - name: aggregate_historical_features
     description: Expandsion of aggregate orders table with a row for each date, shift, location, and menu item. 
       This table is used to create rolling features for the past 7, 14, and 28 days.
-
+    columns:
+      - name: date  
+      - name: shift
+      - name: primary_city
+      - name: location_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: sales
+      
   - name: demand_forecast_training_base 
     description: The base demand forecast feature table with prediction day features and forecast execution day features joined.
+    columns:  
+      - name: date  
+      - name: shift
+      - name: primary_city
+      - name: location_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item      
 
   - name: features_future_dates 
     description: Aggregate orders with date features around the target forecast date.
+    columns:  
+      - name: date  
+      - name: shift
+      - name: primary_city
+      - name: location_id
+      - name: truck_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: sales
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
 
-  - name: features_historical_target_dates # aggregate_target_features
+  - name: features_historical_target_dates
     description: Target prediction date feature table with day of week historical aggregate feature and sales features for the same month in the previous year.
+    columns:  
+      - name: date  
+      - name: shift
+      - name: primary_city
+      - name: location_id
+      - name: truck_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: sales
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type     
+
 
   - name: features_sales_aggregate 
     description: Aggregate table of transactional orders data by date, shift, location, and menu item.
+    columns:
+      - name: date  
+      - name: shift
+      - name: primary_city
+      - name: location_id
+      - name: truck_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: sales
 
-  - name: forecast_training_historical # aggregate_historical_features
+  - name: forecast_training_historical
     description: Forecast execution date rolling aggregate features to capture recent and overall trends by city, location, menu type and menut item. Recent trends are captured with averaging sales or 
       item quantity for the past 7, 14, and 28 days. Overall trends are captured with rolling average sales or item quantity from the first day in our data. 
       This table is used represent the features up to and including the forecast execution date.
+    columns:     
+      - name: primary_city
+      - name: location_id
+      - name: date
+      - name: menu_type
+      - name: menu_item_id
+      - name: shift
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: sales
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item 

@@ -1,17 +1,129 @@
 version: 2
 
 models:
-  - name: menu_items_sales_aggregate # aggregate_target_features
-    description: Aggregate table with historical day of week sales performance and month of previous year performance.
-
-  - name: explode_sales_features # prediction_base
-    description: Dimensional table with future prediction dates (7) cross joined with shifts, locations, and menu items.
-
-  - name: get_sales_historical_trends # features_sales_aggregate
+  - name: menu_items_sales_aggregate
     description: Aggregate table of transactional orders data by date, shift, location, and menu item with date features.
+    columns:  
+      - name: date  
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: primary_city
+      - name: location_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: quantity
+        description: Model target
+      - name: sales
+      - name: day_of_week
+      - name: month_of_year
+      - name: year  
 
-  - name: get_sales_short_term_trends # aggregate_historical_features
+  - name: explode_sales_features
+    description: Dimensional table with future prediction dates (7) cross joined with shifts, locations, and menu items.
+    columns:  
+      - name: date  
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: primary_city
+      - name: location_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: day_of_week
+      - name: month_of_year
+      - name: year 
+
+  - name: get_sales_historical_trends
+    description: Aggregate table with historical day of week sales performance and month of previous year performance.
+    columns:
+      - name: date  
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: primary_city
+      - name: location_id
+      - name: menu_type
+      - name: menu_item_id
+      - name: unit_price
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type     
+
+  - name: get_sales_short_term_trends
     description: Aggregate features of recent and overall sales and item quantity for the past 7, 14, 28 days and all time from the forecast execution date.
+    columns:
+      - name: shift
+        description: Binary encoded 1 = "AM", 0 = "PM"
+      - name: unit_price
+      - name: day_of_week
+      - name: month_of_year
+      - name: year
+      - name: prev_year_month_sales_city
+      - name: prev_year_month_sales_location
+      - name: prev_year_month_sales_city_menu_item
+      - name: prev_year_month_sales_city_menu_type
+      - name: day_of_week_avg_city
+      - name: day_of_week_avg_location
+      - name: day_of_week_avg_city_menu_item
+      - name: day_of_week_avg_city_menu_type
+      - name: avg_sales_7d_location
+      - name: avg_sales_14d_location
+      - name: avg_sales_28d_location
+      - name: avg_sales_location
+      - name: avg_sales_7d_location_menu_type
+      - name: avg_sales_14d_location_menu_type
+      - name: avg_sales_28d_location_menu_type
+      - name: avg_sales_location_menu_type
+      - name: avg_quantity_7d_location_menu_item
+      - name: avg_quantity_14d_location_menu_item
+      - name: avg_quantity_28d_location_menu_item
+      - name: avg_quantity_location_menu_item
+      - name: avg_sales_7d_city
+      - name: avg_sales_14d_city
+      - name: avg_sales_28d_city
+      - name: avg_sales_city
+      - name: avg_sales_7d_city_menu_type
+      - name: avg_sales_14d_city_menu_type
+      - name: avg_sales_28d_city_menu_type
+      - name: avg_sales_city_menu_type
+      - name: avg_quantity_7d_city_menu_item
+      - name: avg_quantity_14d_city_menu_item
+      - name: avg_quantity_28d_city_menu_item
+      - name: avg_quantity_city_menu_item
+      - name: avg_sales_7d_menu_type
+      - name: avg_sales_14d_menu_type
+      - name: avg_sales_28d_menu_type
+      - name: avg_sales_menu_type
+      - name: avg_quantity_7d_menu_item
+      - name: avg_quantity_14d_menu_item
+      - name: avg_quantity_28d_menu_item
+      - name: avg_quantity_menu_item
+      - name: holiday_flag
+        description: Brought in from third-party data provider Cybersyn. Indicates if forecast date is a holiday.
+      - name: latitude
+        description: Brought in from third-party data provider Safegraph.
+      - name: longitude
+        description: Brought in from third-party data provider Safegraph.
+      - name: split_type
+        description: Used to indicate if a row will be used as training or testing.
 
   - name: menu_item_forecast
     description: Menu item predictions for each location and shift for 7 days in the prediction week. The forecast execution day is on a Friday and the prediction week begins 9 days later.
+    columns:
+    - name: forecast_execution_date
+      description: Date the forecast was executed
+    - name: location_id
+    - name: date
+      description: Date the forecast is predicting for
+    - name: shift
+    - name: menu_item_id
+    - name: prediction
+      description: Predicted quantity of a menu item per date, shift, and location
