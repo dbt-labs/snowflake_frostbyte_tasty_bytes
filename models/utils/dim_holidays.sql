@@ -1,3 +1,9 @@
+{{
+  config(
+    schema = 'analytics'
+    )
+}}
+
 
 with cybersyn_holiday as (
 
