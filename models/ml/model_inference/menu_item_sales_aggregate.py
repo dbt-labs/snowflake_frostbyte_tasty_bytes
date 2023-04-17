@@ -20,7 +20,7 @@ def model(dbt, session):
     target = ["quantity"]
 
     # Create DataFrame and define AM/PM shifts
-    df = session.table("frostbyte_tasty_bytes.analytics.orders_v").with_column(
+    df = orders_df.with_column(
         "shift", F.iff(F.builtin("DATE_PART")("HOUR", F.col("order_ts")) < "15", 1, 0)
     )
 
