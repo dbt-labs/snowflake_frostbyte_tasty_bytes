@@ -70,7 +70,7 @@ def model(dbt, session):
     df_future_dates = dbt.ref("get_sales_historical_trends")
     df = dbt.ref("menu_item_sales_aggregate")
     df_locations = dbt.ref("fct_orders").select("location_id", "latitude", "longitude").distinct()
-    df_holidays = dbt.ref("dim_holiday").select("date", "city", "holiday_flag").distinct()
+    df_holidays = dbt.ref("dim_holidays").select("date", "city", "holiday_flag").distinct()
 
     # Most recent day we have sales data (should be today / day we predict)
     max_date = df.select(F.max(F.col("date"))).collect()[0][0]

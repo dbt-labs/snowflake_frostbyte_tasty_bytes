@@ -1,9 +1,0 @@
-version: 2
-
-sources:
-  - name: raw_customer
-    database: frostbyte_tasty_bytes  
-    schema: raw_customer
-    tables:
-      - name: customer_loyalty
-      

@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_cybersyn__holidays
+    description: staging for CyberSyn Marketplace Public Holidays table
+    columns:
+      - name: id
+        description: tbd
+      - name: iso_alpha2
+        description:  tbd 
+      - name: date
+        description: tbd
+      - name: holiday_name
+        description: tbd
+      - name: subdivision
+        description: tbd
+      - name: is_financial
+        description: tbd

@@ -1,22 +1,22 @@
 
 with order_summary as (
 
-    select * from {{ ref('stg_order_summary') }}
+    select * from {{ ref('stg_pos__order_summary') }}
 
 ),
 franchise as (
 
-    select * from {{ ref('stg_franchise') }}
+    select * from {{ ref('stg_pos__franchises') }}
 
 ),
 location as (
 
-    select * from {{ ref('stg_location') }}
+    select * from {{ ref('stg_pos__locations') }}
 
 ),
 customer_loyalty as (
 
-    select * from {{ ref('stg_customer_loyalty') }}
+    select * from {{ ref('stg_customer__loyalty') }}
 
 ),
 final as (

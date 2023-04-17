@@ -1,31 +1,8 @@
 with inventory_log as
 (
 
-    select truck_id,
-           item_id,
-           unit,
-           item_name,
-           unit_price,
-           po_id,
-           quantity,
-           expiration_date,
-           'IN' as direction,
-           dateadd('day', - 1, distribution_date) as created_date
-      from {{ ref('int_truck_inbound') }}
-
-    union all
-
-    select truck_id,
-           item_id,
-           unit,
-           item_name,
-           unit_price,
-           po_id,
-           (quantity * -1) as quantity,
-           expiration_date,
-           'OUT' as direction,
-           created_date
-      from {{ ref('int_truck_item_usage') }} 
+    select *
+      from {{ ref('int_truck_inbound_item_usage') }}
 
 ),
 

@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_customer__loyalty
+    description: staging for Customer Loyalty table
+    columns:
+      - name: customer_id
+        description: tbd
+      - name: first_name
+        description:  tbd 
+      - name: last_name
+        description: tbd
+      - name: city
+        description: tbd
+      - name: country
+        description: tbd
+      - name: postal_code
+        description: tbd
+      - name: preferred_language
+        description: tbd
+      - name: gender
+        description: tbd
+      - name: favourite_brand
+        description: tbd
+      - name: marital_status
+        description: tbd
+      - name: children_count
+        description: tbd
+      - name: sign_up_date
+        description: tbd
+      - name: birthday_date
+        description: tbd
+      - name: e_mail
+        description: tbd
+      - name: phone_number
+        description: tbd

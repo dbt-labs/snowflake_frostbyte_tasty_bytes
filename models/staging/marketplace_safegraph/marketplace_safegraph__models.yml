@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: stg_safegraph__safegraph
+    description: staging for SafeGraph Marketplace table
+    columns:
+      - name: placekey
+        description: tbd
+      - name: parent_placekey
+        description:  tbd 
+      - name: safegraph_brand_ids 
+        description: tbd
+      - name: location_name
+        description: tbd
+      - name: brands
+        description: tbd
+      - name: store_id
+        description: tbd
+      - name: top_category
+        description: tbd
+      - name: sub_category
+        description: tbd
+      - name: naics_code
+        description: tbd
+      - name: latitude
+        description: tbd
+      - name: longitude
+        description: tbd
+      - name: street_address
+        description: tbd
+      - name: city
+        description: tbd
+      - name: region
+        description: tbd
+      - name: postal_code
+        description: tbd
+      - name: open_hours
+        description: tbd
+      - name: category_tags
+        description: tbd
+      - name: opened_on
+        description: tbd
+      - name: closed_on
+        description: tbd
+      - name: tracking_closed_since
+        description: tbd
+      - name: geometry_type
+        description: tbd
+      - name: polygon_wkt
+        description: tbd
+      - name: polygon_class
+        description: tbd
+      - name: enclosed
+        description: tbd
+      - name: phone_number
+        description: tbd
+      - name: is_synthetic
+        description: tbd
+      - name: includes_parking_lot
+        description: tbd
+      - name: wkt_area_sq_meters
+        description: tbd
+      - name: country
+        description: tbd
+      - name: location_id
+        description: tbd

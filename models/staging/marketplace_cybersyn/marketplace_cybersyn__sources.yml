@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: marketplace_cybersyn
+    database: frostbyte_cs_public
+    schema: cybersyn
+    tables:
+      - name: public_holidays
