@@ -49,6 +49,7 @@ models:
         +schema: stg_supply_chain
     ml:
       materialized: table
-      +pre_hook: ["USE WAREHOUSE TASTY_DS_WH", "ALTER WAREHOUSE TASTY_DS_WH SET WAREHOUSE_SIZE=XXLARGE"]
+      +snowflake_warehouse: "TASTY_SNOWPARK_WH"
+      +pre_hook: ["ALTER WAREHOUSE TASTY_SNOWPARK_WH SET WAREHOUSE_SIZE=X5LARGE"]
       model_training:
-        +pre_hook: ["USE WAREHOUSE TASTY_SNOWPARK_WH", "CREATE STAGE IF NOT EXISTS forecast_stage"]
+        +pre_hook: ["CREATE STAGE IF NOT EXISTS forecast_stage"]
