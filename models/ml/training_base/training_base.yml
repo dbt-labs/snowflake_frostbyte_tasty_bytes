@@ -1,6 +1,31 @@
 version: 2
 
 models:
+
+  - name: features_sales_aggregate 
+    description: Aggregate table of transactional orders data by date, shift, location, and menu item.
+    columns:
+      - name: date
+        tests:
+          - not_null
+      - name: shift
+        tests:
+          - accepted_values:
+              values: ['AM', 'PM']
+      - name: sales
+        tests:
+          - is_positive
+      - name: truck_id
+        tests:
+          - relationships:
+              to: ref('base_pos__trucks')
+              field: truck_id
+      - name: primary_city
+        tests:
+          - relationships:
+              to: ref('base_pos__trucks')
+              field: primary_city
+
   - name: aggregate_historical_features # features_sales_aggregate_expanded
     description: Expandsion of aggregate orders table with a row for each date, shift, location, and menu item. 
       This table is used to create rolling features for the past 7, 14, and 28 days.
@@ -13,9 +38,6 @@ models:
 
   - name: features_historical_target_dates # aggregate_target_features
     description: Target prediction date feature table with day of week historical aggregate feature and sales features for the same month in the previous year.
-
-  - name: features_sales_aggregate 
-    description: Aggregate table of transactional orders data by date, shift, location, and menu item.
 
   - name: forecast_training_historical # aggregate_historical_features
     description: Forecast execution date rolling aggregate features to capture recent and overall trends by city, location, menu type and menut item. Recent trends are captured with averaging sales or 
