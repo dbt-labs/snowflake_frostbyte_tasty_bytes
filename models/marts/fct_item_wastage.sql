@@ -2,7 +2,7 @@ with inventory_log as
 (
 
     select *
-      from {{ ref('int_truck_inbound_item_usage') }}
+      from {{ ref('int_truck_inventory_summary') }}
 
 ),
 

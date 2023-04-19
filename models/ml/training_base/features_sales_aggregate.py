@@ -4,6 +4,8 @@ import snowflake.snowpark.functions as F
 
 def model(dbt, session):
 
+    dbt.config(snowflake_warehouse="TASTY_SNOWPARK_WH")
+
     orders_df = dbt.ref("fct_orders")
 
     # Define features
