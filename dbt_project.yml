@@ -45,6 +45,13 @@ models:
       materialized: table
       +schema: ml
       +snowflake_warehouse: "TASTY_SNOWPARK_WH"
-      +pre_hook: ["ALTER WAREHOUSE TASTY_DS_WH SET WAREHOUSE_SIZE=X5LARGE"]
+      model_inference:
+        +docs:
+          node_color: "red"
       model_training:
         +pre_hook: ["CREATE STAGE IF NOT EXISTS forecast_stage"]
+        +docs:
+          node_color: "#cc5801"
+      training_base:
+        +docs:
+          node_color: "orange"

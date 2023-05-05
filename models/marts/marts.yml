@@ -23,6 +23,13 @@ models:
 
   - name: fct_item_wastage
     description: Tasty Bytes Truck Item_ID Level Waste Data
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - truck_id
+            - po_id
+            - item_id
+            - created_date
     columns:
       - name: truck_id
         description: Unique Tasty Bytes Truck Identifier
