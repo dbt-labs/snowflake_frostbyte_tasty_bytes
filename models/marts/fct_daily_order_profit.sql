@@ -1,4 +1,3 @@
-{{ config(snowflake_warehouse="tasty_de_wh") }}
 
 select order_ts,
        order_id,
