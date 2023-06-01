@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: supply_chain
-    database: frostbyte_tasty_bytes  
+    database: frostbyte_tasty_bytes_v2  
     schema: raw_supply_chain
     tables:
       - name: distribution_detail

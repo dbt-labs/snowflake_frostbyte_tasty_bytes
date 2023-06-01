@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: customer
-    database: frostbyte_tasty_bytes  
+    database: frostbyte_tasty_bytes_v2  
     schema: raw_customer
     tables:
       - name: customer_loyalty
