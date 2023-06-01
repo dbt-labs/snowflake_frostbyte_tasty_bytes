@@ -34,6 +34,9 @@ def model(dbt, session):
         )
     )
 
+    # Filter out 'extra' items that have no cost
+    df_base = df_base.filter(df_base.menu_item_id < 1000)
+
     # Aggregate
     df_base = df_base.group_by(order_features).agg(F.sum(*target).alias("quantity"))
 

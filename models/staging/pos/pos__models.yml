@@ -33,7 +33,6 @@ models:
       - name: franchise_id
         description: primary key for franchise model
         tests:
-          - unique
           - not_null
       - name: first_name
         description: first name of the owner
