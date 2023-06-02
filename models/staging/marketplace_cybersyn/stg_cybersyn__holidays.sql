@@ -2,12 +2,11 @@
 with
     source as (
         select *
-          from {{ source("marketplace_cybersyn", "public_holidays") }}
+          from {{ source("marketplace_cybersyn", "public_holiday_calendar") }}
     ),
 
     renamed as (
         select
-            id AS id,
             iso_alpha2 AS iso_alpha2,
             date AS date,
             holiday_name AS holiday_name,
