@@ -5,4 +5,4 @@ sources:
     database: frostbyte_cs_public
     schema: cybersyn
     tables:
-      - name: public_holidays
+      - name: public_holiday_calendar
