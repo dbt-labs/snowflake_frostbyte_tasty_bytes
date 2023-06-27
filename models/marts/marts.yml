@@ -38,20 +38,113 @@ models:
 
   - name: fct_orders
     description: Tasty Bytes Food Truck Order Data including metrics from Point of Sales, Customer Loyalty, SafeGraph and Cybersyn Sources.
+    config:
+      contract:
+        enforced: false
     columns:
       - name: order_id
         description: Unique Order Identifier from the Tasty Bytes Point of Sales system
+        #data_type: int
+        #constraints:
+        #  - type: not_null
+        #  - type: unique
+        tests:
+          - unique
+          - not_null  
       - name: customer_id
+        data_type: int
         description: Unique Customer Identifier from the Tasty Bytes Customer Loyalty system
       - name: truck_id
+        data_type: int
         description: Unique Tasty Bytes Truck Identifier
       - name: holiday_flag
+        data_type: int
         description: Boolean flag for Holiday occuring in the Orders Country/City on Order Date
       - name: latitude
+        data_type: real
         description: The angular distance of a place north or south of the earth's equator
       - name: longitude
+        data_type: real
         description: The angular distance of a place east or west of the meridian at Greenwich, England
-  
+      - name: children_count
+        data_type: int
+      - name: city
+        data_type: text
+      - name: country
+        data_type: text
+      - name: date
+        data_type: date
+      - name: e_mail
+        data_type: text
+      - name: first_name
+        data_type: text
+      - name: franchisee_first_name
+        data_type: text
+      - name: franchisee_last_name
+        data_type: text
+      - name: franchise_flag
+        data_type: int
+      - name: franchise_id
+        data_type: int
+      - name: gender
+        data_type: text
+      - name: holiday_name
+        data_type: text
+      - name: iso_country_code
+        data_type: text
+      - name: last_name
+        data_type: text
+      - name: line_number
+        data_type: int
+      - name: location_id
+        data_type: int
+      - name: location_name
+        data_type: text
+      - name: marital_status
+        data_type: text
+      - name: menu_item_id
+        data_type: int
+      - name: menu_item_name
+        data_type: text
+      - name: menu_type
+        data_type: text
+      - name: order_amount
+        data_type: real
+      - name: order_detail_id
+        data_type: int
+      - name: order_discount_amount
+        data_type: real
+      - name: order_tax_amount
+        data_type: real
+      - name: order_total
+        data_type: real
+      - name: order_ts
+        data_type: timestamp_ntz
+      - name: phone_number
+        data_type: text
+      - name: placekey
+        data_type: text
+      - name: price
+        data_type: real
+      - name: primary_city
+        data_type: text
+      - name: quantity
+        data_type: int
+      - name: region
+        data_type: text
+      - name: street_address
+        data_type: text
+      - name: sub_category
+        data_type: text
+      - name: top_category
+        data_type: text 
+      - name: truck_brand_name
+        data_type: text
+      - name: unit_price
+        data_type: real
+
+
+
   - name: fct_truck_inventory
     description: Tasty Bytes Truck Inbound and Outbound Item_ID Level Inventory History
     columns:
