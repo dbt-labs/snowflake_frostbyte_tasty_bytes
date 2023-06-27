@@ -135,23 +135,6 @@ models:
       - name: updated_date
         description: updated date in datetime format
 
-  - name: stg_supply_chain__recipes
-    description: staging model for recipe data
-    columns:
-      - name: recipe_id
-        description: primary key for the recipe model
-        tests:
-          - unique
-          - not_null
-      - name: menu_item_id
-        description: menu item id
-      - name: menu_item_line_item
-        description: menu item and line item id
-      - name: item_id
-        description: foreign key for the item model
-      - name: unit_quantity
-        description: unit quantity
-
   - name: stg_supply_chain__vendors
     description: staging model for vendor data
     columns:
