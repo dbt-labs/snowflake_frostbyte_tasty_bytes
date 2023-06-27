@@ -69,9 +69,3 @@ models:
         description: Unique Identifier for Tasty Bytes Warehouses
       - name: item_id
         description: Unique Identifier for Tasty Bytes Bulk Ingredient Items
-
-  - name: fct_holiday
-    description: Holiday Data Sourced from CybernSyn for Tasty Bytes served Countries and Cities
-    columns:
-      - name: date
-        description: Holiday Date
