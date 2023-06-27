@@ -20,6 +20,13 @@ safegraph as (
     select * from {{ ref('dim_safegraph_poi') }}
 
 ),
+inventory as (
+
+    select * from {{ ref('int_truck_inventory_summary') }}
+
+),
+
+
 final as (
 
     select date(orders.order_ts) as date,
