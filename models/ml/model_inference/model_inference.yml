@@ -15,3 +15,4 @@ models:
 
   - name: menu_item_forecast
     description: Menu item predictions for each location and shift for 7 days in the prediction week. The forecast execution day is on a Friday and the prediction week begins 9 days later.
+
