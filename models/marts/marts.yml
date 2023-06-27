@@ -44,10 +44,10 @@ models:
     columns:
       - name: order_id
         description: Unique Order Identifier from the Tasty Bytes Point of Sales system
-        #data_type: int
-        #constraints:
-        #  - type: not_null
-        #  - type: unique
+        data_type: int
+        constraints:
+          - type: not_null
+          - type: unique
         tests:
           - unique
           - not_null  
