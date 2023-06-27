@@ -5,6 +5,7 @@
     )
 }}
 
+
 with holiday as (
 
     select * from {{ ref('dim_holidays') }}
