@@ -19,7 +19,7 @@ item as (
 inbound as (
 
     select distribution_summary.distribution_date,
-           distribution_summary.truck_id,
+           distribution_summary.truck_id, 
            distribution_summary.expiration_date,
            distribution_summary.po_id,
            distribution_summary.quantity,
