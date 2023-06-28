@@ -12,7 +12,7 @@ def model(dbt, session):
     order_features = [
         "date",
         "shift",
-        "primary_city",
+        "primary_city", 
         "location_id",
         "truck_id",
         "menu_type",

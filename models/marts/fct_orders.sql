@@ -1,7 +1,7 @@
 {{
     config(
         materialized = "table",
-        transient = false
+        transient = false,
     )
 }}
 
@@ -20,6 +20,8 @@ safegraph as (
     select * from {{ ref('dim_safegraph_poi') }}
 
 ),
+
+
 final as (
 
     select date(orders.order_ts) as date,
