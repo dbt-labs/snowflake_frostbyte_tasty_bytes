@@ -2,7 +2,7 @@
 with
     source as (
         select *
-          from {{ source("marketplace_cybersyn", "public_holiday_calendar") }}
+          from {{ source("marketplace_cybersyn", "public_holidays") }}
     ),
 
     renamed as (
