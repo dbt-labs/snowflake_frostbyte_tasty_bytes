@@ -19,7 +19,7 @@ customer_loyalty as (
     select * from {{ ref('stg_customer__loyalty') }}
 
 ),
-final as (
+finals as (
     select order_summary.order_id,
            order_summary.truck_id,
            order_summary.order_ts,
@@ -63,4 +63,4 @@ final as (
 select 
     *
 from
-    final
+    finals
